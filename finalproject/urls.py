@@ -27,7 +27,7 @@ from .settings import MEDIA_ROOT
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
-    url(r'^index/', include('map.urls')),
+    url(r'', include('map.urls')),
     url(r'^map/$', map, name='map'),
     url(r'^map/m(?P<id>[0-9]+)/$', boothmap, name='boothmap'),
     url(r'^map/m(?P<id>[0-9]+)/i(?P<pk>[0-9]+)/$', inf, name='inf'),

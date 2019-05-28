@@ -25,7 +25,7 @@ SECRET_KEY = 'xl7pho_rss-45gacc%apc%$#y*r)x(iprl^11$&&55)#z1va#!'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['boothgo.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition

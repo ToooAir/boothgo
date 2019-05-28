@@ -22,6 +22,8 @@ from map.views import *
 from django.conf import settings
 from .settings import MEDIA_ROOT
 from django.views.decorators.csrf import csrf_exempt
+from django.views import static
+from django.conf import settings
 
 
 urlpatterns = [
@@ -40,5 +42,6 @@ urlpatterns = [
     url(r'^contact/', comment ,name='comment' ),
     url(r'^about/', about ,name='about' ),
     url(r'^news/', news ,name='news' ),
+    url(r'^static/(?P<path>.*)$', static.serve, {'document_root': settings.STATIC_ROOT }, name='static'),
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+]

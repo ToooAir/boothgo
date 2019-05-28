@@ -41,4 +41,4 @@ urlpatterns = [
     url(r'^about/', about ,name='about' ),
     url(r'^news/', news ,name='news' ),
 
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

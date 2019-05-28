@@ -241,7 +241,7 @@ def login(request):
             if next:
                 return HttpResponseRedirect(next)
             else:
-                return HttpResponseRedirect("")
+                return HttpResponseRedirect("/index/")
         else:
             errorms = "error"
             return render(request, "login.html", locals())
@@ -250,7 +250,7 @@ def login(request):
 
 def logout(request):
     auth.logout(request)
-    return HttpResponseRedirect('')
+    return HttpResponseRedirect('/index/')
 
 
 def register(request):
@@ -271,7 +271,7 @@ def register(request):
             if next:
                 return HttpResponseRedirect(next)
             else:
-                return HttpResponseRedirect("")
+                return HttpResponseRedirect("/index/")
 
     else:
         form = UserCreationForm()

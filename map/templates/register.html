@@ -1,0 +1,144 @@
+{% load static %}
+{% load staticfiles %}
+
+<!DOCTYPE HTML>
+<!--
+  Arcana by HTML5 UP
+  html5up.net | @ajlkn
+  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+  <title>Booth GO! login</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+  <link rel="stylesheet" type="text/css" href="{% static 'css/animate-custom.css' %}" />
+</head>
+<body class="is-preload">
+  <div id="page-wrapper">
+
+     <!-- Header -->
+    <div id="header" >  
+      <!--FB..
+      <div id="top">
+        <ul class="community">
+          <li><a target="_blank" class="fb">facebook</a></li>
+          <li><a target="_blank" class="ig">IG</a></li>
+        </ul>
+      </div>-->
+
+      
+
+      <!-- Nav -->
+      <div id="nav">
+        <!-- Logo -->
+        <h1>
+          <a id="logo" class="font-white" href="/index" >BOOTH GO! </a>
+        </h1>
+        <ul>
+          <li><a href="/index">Home</a></li>
+          <li class="current"><a href="signup.html">signup</a></li>
+          <li><a href="/about">About us</a></li>
+          <li ><a href="/contact">Contact us</a></li>
+          <li><a>more</a>
+            <ul>
+              <li><a href="/map">展覽活動</a></li>
+              <li><a href="/news">最新消息</a></li>
+              <li><a href="/lovepage">我的最愛</a></li>
+            </ul>
+          </li>
+        </ul>
+        <!--search-->
+        <div class="box1">
+          <form method="POST" name="form1" >   <!-- 建立form表單，設定傳送方式為GET，「action="/edit/{{unit.id}}/edit"」中第三個參數為edit，表示他是從<edit.html>按送出鈕傳送過來的-->
+
+                    {% csrf_token %}     <!-- #CSRF防護請加在此 -->
+                    <table border="1" cellpadding="1" cellspacing="4">
+                        
+    <!-- #CSRF防護請加在此 -->
+                        
+                              <input type="text" id="search" name="search" placeholder="Type...">
+                   
+                              <input type="submit" name="button" id="button" value="Search">
+
+                        
+                    </table>
+
+                   
+                </form> 
+        </div>
+        <!--search end-->
+      </div>
+    </div>
+<!--signup-->
+<div class="container">
+    <!-- Codrops top bar -->
+    <div class="codrops-top">
+        <div class="clr"></div>
+    </div><!--/ Codrops top bar -->
+    <header>
+    </header>
+    <section>       
+        <div id="container" >
+            <!-- hidden anchor to stop jump http://www.css3create.com/Astuce-Empecher-le-scroll-avec-l-utilisation-de-target#wrap4  -->
+            <a class="hiddenanchor" id="toregister"></a>
+            <a class="hiddenanchor" id="tologin"></a>
+            <div id="wrapper">
+
+              <div id="register" class="animate form">
+                <!-- <form  action="mysuperscript.php" autocomplete="on"> -->
+                    <h1> Sign up </h1> 
+                    <form action="" method="post">           
+                        {% csrf_token %}
+                          {% for field in form %}
+                            <p>{{ field.label_tag }} </p>
+                            <p>{{ field }} </p>
+                            <p>{{ field.errors }}</p>                    
+                          {% endfor %} 
+                    <p class="signin button"> 
+                        <input type="submit" value="Sign up"/> 
+                    </p>
+
+                    
+                    <p class="change_link">  
+                        Already a member ?
+                        <a href="/login"> Go and log in </a>
+                    </p>
+                
+            </div>
+       
+        </div>
+    </div>  
+  </section>
+</div>
+
+<!--footer2-->
+    <div id="footer2">
+      <div class="footer2-content">
+        <!--
+        <img src="upload/15222185171718.jpg" width="100" alt="QRCODE" class="qr-code">
+        -->
+        <ul class="footer2-nav">
+          <li class="font-white">相關連結</li>
+          <li><a href="https://www.tainex1.com.tw/zh-tw/">南港展覽館</a></li>
+          <li><a href="http://www.twtc.org.tw/index.aspx">世貿展覽館</a></li>
+          <li><a href="index">台大體育館</a></li>
+        </ul>
+      </div>
+    </div>
+    <!--footer end-->
+
+</div>
+
+<!-- Scripts -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/jquery.dropotron.min.js' %}"></script>
+<script src="{% static 'js/browser.min.js' %}"></script>
+<script src="{% static 'js/breakpoints.min.js' %}"></script>
+<script src="{% static 'js/util.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>

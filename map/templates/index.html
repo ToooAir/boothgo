@@ -1,0 +1,257 @@
+{% load static %}
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<!--
+	Arcana by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+	<title>BOOTH GO!</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+	<link rel="stylesheet" href="{% static 'css/main.css' %}" />
+	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+	<link rel="stylesheet" href="{% static 'css/style1.css' %}">
+
+</head>
+<body>
+	<div id="page-wrapper" style="font-family: 微軟正黑體">
+		<!-- Header -->
+		<div id="header" >	
+			
+			<!--
+			FB..
+			<div id="top">
+				<ul class="community">
+					<li><a target="_blank" class="fb">facebook</a></li>
+					<li><a target="_blank" class="ig">IG</a></li>
+				</ul>
+			</div>-->
+
+			<!-- Nav -->
+			<div id="nav">
+				<!-- Logo -->
+				<h1>
+					<a id="logo" class="font-white" href="/index" >BOOTH GO! </a>
+				</h1>
+				<!--標籤-->
+
+					{% if request.user.is_authenticated %}
+						<p id="Hello" >Hello, {{ user.username }}.
+					{% endif %}
+					
+				<ul>
+
+					<li class="current"><a href="/index">Home</a></li>
+					{% if request.user.is_authenticated %}
+			            <li><a href="/logout">Logout</a></li>
+			        {% else %}
+			            <li><a href="/login">Login</a></li>
+			        {% endif %}
+					<li><a href="/about">About us</a></li>
+					<li ><a href="/contact">Contact us</a></li>
+					<li><a>more</a>
+						<ul>
+							<li><a href="/map">展覽活動</a></li>
+							<li><a href="/news">最新消息</a></li>
+							<li><a href="/lovepage">我的最愛</a></li>
+						</ul>
+					</li>
+				</ul>
+				<!--search-->
+				<div class="box1">
+					
+					<form method="POST" name="form1" >   <!-- 建立form表單，設定傳送方式為GET，「action="/edit/{{unit.id}}/edit"」中第三個參數為edit，表示他是從<edit.html>按送出鈕傳送過來的-->
+
+                    {% csrf_token %}     <!-- #CSRF防護請加在此 -->
+                    	<table border="1" cellpadding="1" cellspacing="4">
+                        
+    						<!-- #CSRF防護請加在此 -->
+                    		
+	                            <input type="text" id="search" name="search" placeholder="Type...">
+	                 
+	                            <input type="submit" name="button" id="button" value="Search">
+
+                        
+                    </table>
+
+                   
+                </form> 
+  					
+  				</div>
+  				<!--search end-->
+			</div>
+		</div>
+
+		<!-- Banner -->
+		<section id="banner">
+			
+
+			<!--輪播
+			<div class="rwd_slider_container_wrapper">
+  				<div class="rwd_slider_container">
+	    			<div class="slider_container" >
+      					<div>
+        					<img src="{% static 'images/1.png" alt="pure css slider" />
+      					</div>
+      					<div>
+        					<img src="{% static 'images/2.jpg" alt="pure css slider" />
+      					</div>
+      					<div>
+        					<img src="{% static 'images/3.png" alt="pure css slider"/>
+      					</div>
+      					<div>
+        					<img src="{% static 'images/4.png" alt="pure css slider" />
+      					</div>
+      					<div>
+        					<img src="{% static 'images/5.png" alt="pure css slider"/>
+      					</div>
+    				</div>
+  				</div>
+			</div>
+			輪播end-->
+
+			<!--跑馬燈-->
+			<div class="intro">
+				<img src="{% static 'images/n1.jpg' %}" alt="">
+				<img src="{% static 'images/n2.jpg' %}" alt="" >
+				<img src="{% static 'images/n3.jpg' %}" alt="">
+				<div class="inner-wrapper">
+					<h1 style="margin: 0;">Public Platform</h1>		
+					<h2 style="margin: 0l">展覽活動平台</h2>
+				</div>
+			</div>
+			<!--跑馬燈end	-->
+			<!--手動播放
+			<div class="carousel-container">
+				<i class="fas fa-arrow-left" id="prevBtn"></i>
+				<i class="fas fa-arrow-right" id="nextBtn"></i>
+				<div class="carousel-slide">
+					<img src="{% static 'images/6.gif' %}" id="lastClone" alt="">
+					<img src="{% static 'images/1.png' %}" alt="">
+					<img src="{% static 'images/2.jpg' %}" alt="" >
+					<img src="{% static 'images/3.png' %}" alt="">
+					<img src="{% static 'images/4.png' %}" alt="">
+					<img src="{% static 'images/5.png' %}" alt="">
+					<img src="{% static 'images/6.gif' %}" alt="">
+					<img src="{% static 'images/1.png' %}" id="firstClone" alt="">
+				</div>		
+			</div>-->
+			<!--<header>
+				<h2>Arcana: <em>A responsive site template freebie by <a href="http://html5up.net">HTML5 UP</a></em></h2>
+				<a href="#" class="button">Learn More</a>
+			</header>-->
+		</section>
+
+		<!--tiles-->
+		<section class="tiles">
+			<article class="style1">
+				<span class="image">
+					<!--<img src="{% static 'images/pic01.jpg" alt="" >-->
+					<img src="{% static 'images/pink.png' %}" alt="" >
+				</span>
+				<a href="/map">
+					<h2>展覽活動一覽</h2>
+					<div class="content">
+						<p>Events / Exhibitions</p>
+					</div>
+				</a>
+			</article>
+			<article class="style2">
+				<span class="image">
+					<img src="{% static 'images/pink.png' %}" alt="" />
+				</span>
+				<a href="/news">
+					<h2>最新消息</h2>
+					<div class="content">
+						<p>News</p>
+					</div>
+				</a>
+			</article>
+			<article class="style3">
+				<span class="image">
+					<img src="{% static 'images/pink.png' %}" alt="" />
+				</span>
+				<a href="/lovepage">
+					<h2>我的最愛</h2>
+					<div class="content">
+						<p>My favourite</p>
+					</div>
+				</a>
+			</article>
+		</section>
+
+		<!-- 最新消息 -->
+		<div id="mid-container"> 
+			<!--news-->
+			<div id="news">
+				<b>
+				<h3>最新消息 NEWS<a href="/news">看更多</a></h3>
+				<ul>	
+					<li><a href="news_content_1110" title=""><span>2019/05/28</span>日本首座職人創意市集</a></li>
+			  		
+					<li><a href="news_content_1101" title=""><span>2019/06/01</span>台中年度旅展</a></li>
+			  		
+					<li><a href="news_content_1090" title=""><span>2019/06/19</span>台北國際食品展覽會</a></li>
+			  		
+					<li><a href="news_content_1087" title=""><span>2019/06/21</span>台北婚紗囍宴結婚用品展-夏季展、台北國際珠寶玉石精品展</a></li>
+			  		
+					<li><a href="news_content_1067" title=""><span>2019/07/05</span>台北寵物用品展</a></li>
+			  		
+					<li><a href="news_content_1053" title=""><span>2019/07/07</span>進口內銷家具大展</a></li>
+				</ul>
+				</b>
+			</div>
+			<!--news end--> 
+			<!--近期活動-->
+			<div id="news1">
+				<b>
+				<h3>熱門展覽<a href="/news">看更多</a></h3>
+				<ul>	
+					<li><a href="news_content_1110" title=""><span>2019/05/28</span>日本首座職人創意市集</a></li>
+			  		
+					<li><a href="news_content_1101" title=""><span>2019/06/01</span>台中年度旅展</a></li>
+			  		
+					<li><a href="news_content_1090" title=""><span>2019/06/19</span>台北國際食品展覽會</a></li>
+			  		
+					<li><a href="news_content_1087" title=""><span>2019/06/21</span>台北婚紗囍宴結婚用品展-夏季展、台北國際珠寶玉石精品展</a></li>
+			  		
+					<li><a href="news_content_1067" title=""><span>2019/07/05</span>台北寵物用品展</a></li>
+			  		
+					<li><a href="news_content_1053" title=""><span>201/07/07</span>進口內銷家具大展</a></li>
+				</ul>
+				</b>
+			</div>
+			<!--近期活動 end--> 
+		</div>
+		<!-- 最新消息 end-->
+	
+		<!--footer2-->
+		<div id="footer2">
+			<div class="footer2-content">
+				<!--
+				<img src="upload/15222185171718.jpg" width="100" alt="QRCODE" class="qr-code">
+				-->
+				<ul class="footer2-nav">
+					<li class="font-white">相關連結</li>
+					<li><a href="https://www.tainex1.com.tw/zh-tw/">南港展覽館</a></li>
+					<li><a href="http://www.twtc.org.tw/index.aspx">世貿展覽館</a></li>
+					<li><a href="index">台大體育館</a></li>
+				</ul>
+			</div>
+		</div>
+		<!--footer end-->
+	</div>
+				<!-- Scripts -->
+				<script src="{% static 'js/jquery.min.js' %}"></script>
+				<script src="{% static 'js/jquery.dropotron.min.js' %}"></script>
+				<script src="{% static 'js/browser.min.js' %}"></script>
+				<script src="{% static 'js/breakpoints.min.js' %}"></script>
+				<script src="{% static 'js/util.js' %}"></script>
+				<script src="{% static 'js/main.js' %}"></script>
+				<script src="{% static 'js/slide.js' %}"></script>
+
+			</body>
+			</html>

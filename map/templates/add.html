@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        
+    </head>
+    <body>
+       <form method="POST" name="form1">   <!-- 建立form表單，設定傳送方式為GET，「action="/edit/{{unit.id}}/edit"」中第三個參數為edit，表示他是從<edit.html>按送出鈕傳送過來的-->
+
+        {% csrf_token %}     <!-- #CSRF防護請加在此 -->
+        <table border="1" cellpadding="1" cellspacing="4">
+            <tr>
+                <th>社團編號</th>
+                <td><input type="text" id="number" name="number"></td>
+            </tr>
+            <tr>
+                <th>社團名稱</th>
+                <td><input type="text" id="groupname" name="groupname"></td>
+            </tr>
+            <tr>
+                <th>描述</th>
+                <td><input type="text" id="desc" name="desc" ></td>
+            </tr>
+            <tr>
+                <th>類型</th>
+                <td><input type="text" id="worktype" name="workstype"></td>
+            </tr>
+            <tr>
+                <th>Tag</th>
+                <td><input type="text" id="worktag" name="workstag" ></td>
+            </tr>
+            <tr>
+                <th>picture</th>
+                <td><input type="file" name="filename" value=""></td>
+            </tr>
+            <tr>
+                <th colspan="2" align="center">
+                    <input type="submit" name="button" id="button" value="送出">
+                    <input type="reset" name="button2" id="button2" value="重設">
+            </tr>
+        </table>
+        
+    </form> 
+    
+
+    {% for n in num.booth_set.all %}
+        {{ forloop.counter }}
+    {% endfor %}
+    
+    </body>
+</html>
+
+

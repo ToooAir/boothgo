@@ -1,0 +1,1368 @@
+{% load static %}
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<!--
+    Arcana by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+  <title>展覽攤位資訊</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+</head>
+<body class="is-preload">
+  <div id="page-wrapper" style="font-family: 微軟正黑體; color: rgb(28,30,33) ">
+
+   <!-- Header -->
+   <div id="header">
+
+     
+     <!-- Nav -->
+     <nav id="nav">
+
+      <!-- Logo -->
+     <h1><a href="/index" id="logo">BOOTH GO!<em></em></a></h1>
+        <div class="box1">
+          
+          <form method="POST" name="form1" >   <!-- 建立form表單，設定傳送方式為GET，「action="/edit/{{unit.id}}/edit"」中第三個參數為edit，表示他是從<edit.html>按送出鈕傳送過來的-->
+
+                    {% csrf_token %}     <!-- #CSRF防護請加在此 -->
+                      <table border="1" cellpadding="1" cellspacing="4">
+                        
+                <!-- #CSRF防護請加在此 -->
+                        
+                              <input type="text" id="search" name="search" placeholder="Type...">
+                   
+                              <input type="submit" name="button" id="button" value="Search">
+
+                        
+                    </table>
+
+                   
+                </form> 
+            
+          </div>
+        {% if request.user.is_authenticated %}
+          <p id="Hello" >Hello, {{ user.username }}.
+        {% endif %}
+
+       <ul>
+        <li><a href="/index/">Home</a></li>
+              {% if request.user.is_authenticated %}
+                  <li><a href="/logout">Logout</a></li>
+              {% else %}
+                  <li><a href="/login?next={{ request.path }}">Login</a></li>
+              {% endif %}
+        <li><a href="/about/">About us</a></li>
+        <li ><a href="/contact">Contact us</a></li>
+        <li class="current"><a>more</a>
+         <ul>
+          <li><a href="/map">展覽活動</a></li>
+          <li><a href="/news">最新消息</a></li>
+          <li><a href="/lovepage">我的最愛</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</div>
+<!--activity-->
+<div id="contain_details" class="v-spacing-30 h-spacing-10">
+      
+        {% if "FF" in num.title %}    
+        <table>
+            {% if boothbu1 %} 
+            <div id="page_title" class="blue-title font-h1">
+            <p>商業攤</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div> 
+            <tr>
+              {% for n in boothbu1 %}
+                    <td ><input type="button" value="{{ n.group_name }}" onclick="location.href='i{{ n.id }}'"></td>
+                {% endfor %}
+            </tr>
+            
+            {% endif %}
+            {% if boothbu2 %}
+            <div id="page_title" class="blue-title font-h1">
+            <p>商業攤</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>  
+            <td valign="top">
+                <table >
+                <td>                        
+                    <td style="vertical-align:text-top;"><input type="button" value="希萌創意" onclick="location.href='i4772'"></td>
+                </td>
+                <td>
+                <table>
+                    <tr> 
+                        {% for n in boothbu2 %}
+                            {% if forloop.counter < 8 and  forloop.counter > 1  %}
+                                {% if not forloop.counter|divisibleby:'2' %}
+                                <td><input type="button" value="{{ n.group_name }}" onclick="location.href='i{{ n.id }}'"></td>
+                                
+                                {% endif %}
+                            {% endif %}
+                           
+                        {% endfor %}
+                    </tr>
+
+                    <tr>
+                            {% for n in boothbu2 %}
+                            {% if forloop.counter < 8 and  forloop.counter > 1  %}
+                                {% if forloop.counter|divisibleby:'2'%}
+                                <td><input type="button" value="{{ n.group_name }}" onclick="location.href='i{{ n.id }}'"></td>
+                                
+                                {% endif %}
+                            {% endif %}
+                           
+                      {% endfor %}
+                      </tr>
+                </table>
+                
+            </td>
+            <td>
+
+                <td style="vertical-align:text-top;"><input type="button" value="虎之穴" onclick="location.href='i4779'"></td>
+                            
+
+                </td>
+                </table>
+            </td> 
+            <td >
+                <table>
+                    <tr>
+                        <td colspan="2" style="text-align:right;"><input type="button" value="創力つくり" onclick="location.href='i4780'"></td>
+                        <td><input type="button" value="知多娘。" onclick="location.href='i4788'"></td>
+
+                        <td><input type="button" value="東洋美術学校" onclick="location.href='i4790'"></td>
+                        <td><input type="button" value="OUTSIDE" onclick="location.href='i4791'"></td>
+                    </tr>
+                    
+                    <tr><td colspan="2" style="text-align:right;"><input type="button" value="ABYSS ACG" onclick="location.href='i4781'"></td>
+                        <td><input type="button" value="Compile Heart" onclick="location.href='i4787'"></td>
+                        <td colspan="2"><input type="button" value="TUKUYOMI DINING" onclick="location.href='i4789'"></td>
+                    </tr>
+
+                    <tr><td colspan="2" style="text-align:right;">
+                        <input type="button" value="龍成網路" onclick="location.href='i4782'"></td>
+                        <td><input type="button" value="らしんばん" onclick="location.href='i4792'"></td>
+                        <td><input type="button" value="飛燕文創" onclick="location.href='i4793'"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="button" value="森蘿御界" onclick="location.href='i4784'"></td>
+                        <td><input type="button" value="雷亞遊戲" onclick="location.href='i4786'"></td>
+                        <td colspan="2"><input type="button" value="Melon Books" onclick="location.href='i4794'"></td>
+                        <td><input type="button" value="DLsite" onclick="location.href='i4796'"></td>
+                    </tr>
+                    <tr>
+                        <td><input type="button" value="哥哥不要印" onclick="location.href='i4783'"></td>
+                        <td><input type="button" value="振光玩具" onclick="location.href='i4785'"></td>
+                        <td colspan="3" style="text-align:right;"><input type="button" value="開拓動漫" onclick="location.href='i4794'"></td>
+                    </tr>
+                    
+                </table>       
+                <table>
+                {% for n in boothbu2 %}
+                    {% if forloop.counter > 25  %}
+
+                        <td><input type="button" value="{{ n.group_name }}" onclick="location.href='i{{ n.id }}'"></td>
+                        
+                        {% endif %}
+
+                   
+              {% endfor %}
+            </table>          
+            </td>
+      
+            </table>          
+
+            {% endif %}
+
+        {% if bootha %} 
+          <div id="page_title" class="blue-title font-h1">
+            <p>A區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+      <div class="button v-spacing-10">
+            <tr>
+              {% for n in bootha reversed %}
+                  {% if forloop.counter >= 23 %}
+                    <td ><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                      <div class="button-hover">
+                        <a>A01-無限之館</a>
+                      </div>
+
+                        </td>
+                    
+                   {% endif %}
+                {% endfor %}
+            </tr>
+            <tr>    
+                {% for n in bootha %}
+                  {% if forloop.counter >= 23 %}
+                    <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                      <div class="button-hover">
+                        <a>A01-無限之館</a>
+                      </div>
+                      
+                   {% endif %}
+                {% endfor %}
+            </tr>   
+        {% endif %}
+
+        {% if boothb %}
+          <div id="page_title" class="blue-title font-h1">
+            <p>B區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in boothb reversed %}
+              {% if forloop.counter >= 23 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        <tr>    
+            {% for n in boothb %}
+              {% if forloop.counter >= 23 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>   
+        {% endif %}
+        {% if boothc %}
+
+        <div id="page_title" class="blue-title font-h1">
+            <p>C區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in boothc reversed %}
+              {% if forloop.counter >= 23 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        <tr>    
+            {% for n in boothc %}
+              {% if forloop.counter >= 23 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        {% endif %} 
+        {% if boothd %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>D區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in boothd reversed %}
+              {% if forloop.counter >= 23 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        <tr>    
+            {% for n in boothd %}
+              {% if forloop.counter >= 23 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        {% endif %} 
+        {% if boothe %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>D區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in boothe reversed %}
+              {% if forloop.counter >= 23 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        <tr>    
+            {% for n in boothe %}
+              {% if forloop.counter >= 23 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        {% endif %} 
+        {% if boothf %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>F區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in boothf reversed %}
+              {% if forloop.counter >= 23 %}
+                <td><p><input type="button"  id="btn-booth"value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        <tr>    
+            {% for n in boothf %}
+              {% if forloop.counter >= 23 %}
+                <td><p><input type="button"  id="btn-booth"value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        {% endif %} 
+        {% if boothg %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>G區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in boothg reversed %}
+              {% if forloop.counter >= 23 %}
+                <td><p><input type="button"  id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        <tr>    
+            {% for n in boothg %}
+              {% if forloop.counter >= 23 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        {% endif %}
+        {% if boothh %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>H區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div> 
+        <tr>
+          {% for n in boothh reversed %}
+              {% if forloop.counter >= 23 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        <tr>    
+            {% for n in boothh %}
+              {% if forloop.counter >= 23 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        {% endif %} 
+        {% if boothi %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>I區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in boothi reversed %}
+              {% if forloop.counter >= 23 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        <tr>    
+            {% for n in boothi %}
+              {% if forloop.counter >= 23 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        {% endif %} 
+        {% if boothj %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>J區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in boothj reversed %}
+              {% if forloop.counter >= 23 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        <tr>    
+            {% for n in boothj %}
+              {% if forloop.counter >= 23 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>   
+        {% endif %}
+        {% if boothk %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>K區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in boothk reversed %}
+              {% if forloop.counter >= 23 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        <tr>    
+            {% for n in boothk %}
+              {% if forloop.counter >= 23 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        {% endif %} 
+        {% if boothl %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>L區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in boothl reversed %}
+              {% if forloop.counter >= 25 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        <tr>    
+            {% for n in boothl %}
+              {% if forloop.counter >= 25 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        {% endif %} 
+        {% if boothm %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>M區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in boothm reversed %}
+              {% if forloop.counter >= 25 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        <tr>    
+            {% for n in boothm %}
+              {% if forloop.counter >= 25 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        {% endif %} 
+        {% if boothn %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>N區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in boothn reversed %}
+              {% if forloop.counter >= 25 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        <tr>    
+            {% for n in boothn %}
+              {% if forloop.counter >= 25 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        {% endif %} 
+        {% if bootho %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>O區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in bootho reversed %}
+              {% if forloop.counter >= 25 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        <tr>    
+            {% for n in bootho %}
+              {% if forloop.counter >= 25 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        {% endif %} 
+        {% if boothp %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>P區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in boothp reversed %}
+              {% if forloop.counter >= 25 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        <tr>    
+            {% for n in boothp %}
+              {% if forloop.counter >= 25 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        {% endif %} 
+        {% if boothq %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>Q區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in boothq reversed %}
+              {% if forloop.counter >= 25 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        <tr>    
+            {% for n in boothq %}
+              {% if forloop.counter >= 25 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        {% endif %} 
+        {% if boothr %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>R區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in boothr reversed %}
+              {% if forloop.counter >= 25 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        <tr>    
+            {% for n in boothr %}
+              {% if forloop.counter >= 25 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        {% endif %} 
+        {% if booths %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>S區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in booths reversed %}
+              {% if forloop.counter >= 25 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        <tr>    
+            {% for n in booths %}
+              {% if forloop.counter >= 25 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        {% endif %} 
+        {% if bootht %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>T區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in bootht reversed %}
+              {% if forloop.counter >= 25 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        <tr>    
+            {% for n in bootht %}
+              {% if forloop.counter >= 25 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        {% endif %} 
+        {% if boothu %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>U區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in boothu reversed %}
+              {% if forloop.counter >= 25 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        <tr>    
+            {% for n in boothu %}
+              {% if forloop.counter >= 25 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        {% endif %} 
+        {% if boothv %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>V區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in boothv reversed %}
+              {% if forloop.counter >= 25 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        <tr>    
+            {% for n in boothv %}
+              {% if forloop.counter >= 25 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        {% endif %} 
+        {% if boothw %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>W區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in boothw reversed %}
+              {% if forloop.counter >= 23 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+               {% endif %}    
+               
+            {% endfor %}
+        </tr>
+        <tr>    
+            {% for n in boothw %}
+              {% if forloop.counter >= 23 %}
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </tr>
+        {% endif %} 
+        {% if boothx %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>X區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in boothx reversed %}
+              
+                <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+
+            {% endfor %}
+        </tr>
+        
+        {% endif %} 
+        {% if boothy %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>Y區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in boothy %}
+              
+                <tr><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></a></tr>
+
+            {% endfor %}
+        </tr>
+        
+        {% endif %}
+
+        </table>
+        {% endif %}
+        {% if "CWT" in num.title %}    
+        <table>
+            {% if boothcw %}  
+            <tr>
+                <td>
+                    {% for n in boothcw %}
+                        {% if forloop.counter > 9 and forloop.counter < 13 %}
+                            <p><input type="button" id="btn-booth" value="{{ n.group_name }}" onclick="location.href='i{{ n.id }}'">
+            
+                        {% endif%}
+                    {% endfor %}
+                </td>
+            <td>
+                <table>
+                {% for n in boothcw %}
+                    {% if forloop.counter <= 9  %}
+                        {% if forloop.counter|divisibleby:'3' %}
+                         <td>
+                            <input type="button" id="btn-booth" value="{{ n.group_name }}" onclick="location.href='i{{ n.id }}'"></td><tr></tr>
+
+                    {% else %}
+                        <td>
+                          <input type="button" id="btn-booth" value="{{ n.group_name }}" onclick="location.href='i{{ n.id }}'">  
+                        </td>
+                        {% endif%}                    
+                    {% endif%}
+                {% endfor %}
+                </table>
+            </td>   
+             <td>
+                 {% for n in boothcw reversed %}
+                        {% if forloop.counter < 5 %}
+                            <p><input type="button" id="btn-booth" value="{{ n.group_name }}" onclick="location.href='i{{ n.id }}'">
+            
+                        {% endif%}
+                    {% endfor %}
+             </td> 
+            </tr>
+            <tr>
+                <td colspan="7" >
+                    <table>
+                    {% for n in boothcw %}
+                        {% if forloop.counter > 12 and forloop.counter < 19 %}
+                            <td><input type="button" id="btn-booth" value="{{ n.group_name }}" onclick="location.href='i{{ n.id }}'"><td>
+            
+                        {% endif%}
+                    {% endfor %}
+                    </table>
+                    
+                </td>
+            </tr>
+            
+            {% endif %}
+        {% if bootha %} 
+        <div id="page_title" class="blue-title font-h1">
+            <p>A區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+            <tr>
+              {% for n in bootha  %}
+              <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                      
+            {% endfor %}
+            </tr>
+            
+  
+        {% endif %}
+        {% if boothb %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>B區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <td>
+          {% for n in boothb %}
+              {% if forloop.counter <= 40 %}
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+               {% endif %}
+            {% endfor %}
+        </td>
+        <td>{% for n in boothb %}
+              {% if forloop.counter > 40 %}
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+               {% endif %}
+            {% endfor %}</td>
+        </tr>   
+        {% endif %}
+        {% if boothc %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>C區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <td>
+          {% for n in boothc %}
+              {% if forloop.counter <= 40 %}
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+               {% endif %}
+            {% endfor %}
+        </td>
+        <td>    
+            {% for n in boothc %}
+            {% if forloop.counter > 40 %}
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+               {% endif %}
+            {% endfor %}
+        </td>
+        {% endif %} 
+        {% if boothd %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>D區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <td>
+          {% for n in boothd  %}
+              {% if forloop.counter <= 40 %}
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+               {% endif %}
+            {% endfor %}
+        </td>
+        <td>    
+            {% for n in boothd %}
+              {% if forloop.counter > 40 %}
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+               {% endif %}
+            {% endfor %}
+        </td>
+        {% endif %} 
+        {% if boothe %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>E區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <td>
+          {% for n in boothe %}
+              {% if forloop.counter <= 40 %}
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+               {% endif %}
+            {% endfor %}
+        </td>
+        <td>    
+            {% for n in boothe %}
+              {% if forloop.counter > 40 %}
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+               {% endif %}
+            {% endfor %}
+        </td>
+        {% endif %} 
+        {% if boothf %}.
+        <div id="page_title" class="blue-title font-h1">
+            <p>F區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <td>
+          {% for n in boothf %}
+              {% if forloop.counter <= 40 %}
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+               {% endif %}
+            {% endfor %}
+        </td>
+        <td>    
+            {% for n in boothf %}
+              {% if forloop.counter > 40 %}
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+               {% endif %}
+            {% endfor %}
+        </td>
+        {% endif %} 
+        {% if boothg %}.
+        <div id="page_title" class="blue-title font-h1">
+            <p>G區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <td>
+          {% for n in boothg %}
+              {% if forloop.counter <= 40 %}
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+               {% endif %}
+            {% endfor %}
+        </td>
+        
+        {% endif %}
+        {% if boothh %} 
+        <div id="page_title" class="blue-title font-h1">
+            <p>H區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <td>
+          {% for n in boothh %}
+
+                <td><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></td>
+ 
+            {% endfor %}
+        </td>
+       
+        {% endif %} 
+        {% if boothi %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>I區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in boothi %}
+              <td><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></td>
+            {% endfor %}
+        </tr>
+        
+        {% endif %} 
+        {% if boothj %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>J區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <td>
+          {% for n in boothj %}
+              {% if forloop.counter <= 40 %}
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+               {% endif %}
+            {% endfor %}
+        </td>
+        {% endif %}
+        {% if boothk %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>K區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <td>
+          {% for n in boothk %}
+              {% if forloop.counter <= 40 %}
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+               {% endif %}
+            {% endfor %}
+        </td>
+        <td>    
+            {% for n in boothk %}
+              {% if forloop.counter > 40 %}
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+               {% endif %}
+            {% endfor %}
+        </td>
+        {% endif %} 
+        {% if boothl %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>L區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <td>
+          {% for n in boothl %}
+              {% if forloop.counter <= 40 %}
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+               {% endif %}
+            {% endfor %}
+        </td>
+        <td>    
+            {% for n in boothl %}
+              {% if forloop.counter > 40 %}
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+               {% endif %}
+            {% endfor %}
+        </td>
+        {% endif %} 
+        {% if boothm %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>M區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <td>
+          {% for n in boothm %}
+              {% if forloop.counter <= 40 %}
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+               {% endif %}
+            {% endfor %}
+        </td>
+        <td>    
+            {% for n in boothm %}
+              {% if forloop.counter > 40 %}
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+               {% endif %}
+            {% endfor %}
+        </td>
+        {% endif %} 
+        {% if boothn %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>N區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <td>
+          {% for n in boothn  %}
+              {% if forloop.counter <= 40 %}
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+               {% endif %}
+            {% endfor %}
+        </td>
+        <td>    
+            {% for n in boothn %}
+              {% if forloop.counter > 40 %}
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+               {% endif %}
+            {% endfor %}
+        </td>
+        {% endif %} 
+        {% if bootho %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>O區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <td>
+          {% for n in bootho  %}
+              {% if forloop.counter <= 40 %}
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+               {% endif %}
+            {% endfor %}
+        </td>
+        <td>    
+            {% for n in bootho %}
+              {% if forloop.counter > 40 %}
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+               {% endif %}
+            {% endfor %}
+        </td>
+        {% endif %} 
+        {% if boothp %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>P區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in boothp%}
+              
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+
+            {% endfor %}
+        </tr>
+        {% endif %} 
+        {% if boothq %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>Q區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in boothq %}
+
+                <td><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+
+            {% endfor %}
+        </tr>
+        
+        {% endif %} 
+        {% if boothr %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>R區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in boothr %}
+
+                <td><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+
+            {% endfor %}
+        </tr>
+       
+        {% endif %} 
+        {% if booths %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>S區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in booths %}
+
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+               
+            {% endfor %}
+        </tr>
+        
+        {% endif %} 
+        {% if bootht %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>T區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <td>
+          {% for n in bootht %}
+              {% if forloop.counter <= 38 %}
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+               {% endif %}
+            {% endfor %}
+        </td>
+        <td>    
+            {% for n in bootht %}
+              {% if forloop.counter > 38 %}
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+               {% endif %}
+            {% endfor %}
+        </td>
+        {% endif %} 
+        {% if boothu %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>U區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <td>
+          {% for n in boothu  %}
+              {% if forloop.counter <= 38 %}
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+               {% endif %}
+            {% endfor %}
+        </td>
+        <td>    
+            {% for n in boothu %}
+              {% if forloop.counter > 38 %}
+                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+               {% endif %}
+            {% endfor %}
+        </td>
+        {% endif %} 
+        {% if boothv %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>V區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in boothv %}
+
+                <td><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+
+            {% endfor %}
+        </tr>
+        {% endif %} 
+        {% if boothw %}
+        <div id="page_title" class="blue-title font-h1">
+            <p>W區</p>
+          </div>
+
+          <div id="filter">
+              <ul class="filter_inner"></ul>
+          </div>
+        <tr>
+          {% for n in boothw %}
+
+                <td><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                  
+
+            {% endfor %}
+        </tr>
+        {% endif %} 
+        </table>
+        {% endif %}
+
+      </div>
+      <div id="filter">
+          <ul class="filter_inner" style="padding-top: 40px;"></ul>
+      </div>
+      <!--各式按鈕-->
+      <div class="v-spacing-10">
+          <input type="button" value="回上頁" onclick="location.href='/map/m{{num.id}}'">
+      </div>
+  
+      <!--各式按鈕 end-->
+</div>
+<!--activity end-->
+<!--footer2-->
+<div id="footer2">
+  <div class="footer2-content">
+        <!--
+        <img src="upload/15222185171718.jpg" width="100" alt="QRCODE" class="qr-code">
+      -->
+      <ul class="footer2-nav">
+        <li class="font-white">相關連結</li>
+        <li><a href="https://www.tainex1.com.tw/zh-tw/">南港展覽館</a></li>
+        <li><a href="http://www.twtc.org.tw/index.aspx">世貿展覽館</a></li>
+        <li><a href="index">台大體育館</a></li>
+      </ul>
+    </div>
+  </div>
+  <!--footer end-->
+</div>
+
+</div>
+
+<!-- Scripts -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/jquery.dropotron.min.js' %}"></script>
+<script src="{% static 'js/browser.min.js' %}"></script>
+<script src="{% static 'js/breakpoints.min.js' %}"></script>
+<script src="{% static 'js/util.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+

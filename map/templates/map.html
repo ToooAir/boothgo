@@ -1,0 +1,338 @@
+{% load static %}
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<!--
+    Arcana by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+     <style type="text/css">
+            td{padding:5px;}
+        </style>
+  <title>展覽攤位資訊</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+</head>
+<body>
+  <div id="page-wrapper" style="font-family: 微軟正黑體">
+
+     <!-- Header -->
+     <div id="header">
+
+       <!-- Nav -->
+       <nav id="nav">
+        
+        <!-- Logo -->
+        <h1>
+          <a href="/index" class="font-white" id="logo">BOOTH GO!<em></em></a>
+        </h1>
+        {% if request.user.is_authenticated %}
+          <p id="Hello" >Hello, {{ user.username }}.
+        {% endif %}
+         <ul>
+            <li><a href="/index">Home</a></li>
+            {% if request.user.is_authenticated %}
+                        <li><a href="/logout">Logout</a></li>
+            {% else %}
+                        <li><a href="/login?next={{ request.path }}">Login</a></li>
+            {% endif %}
+            <li><a href="/about">About us</a></li>
+            <li ><a href="/contact">Contact us</a></li>
+            <li class="current"><a>more</a>
+               <ul>
+                  <li><a href="/map">展覽活動</a></li>
+                  <li><a href="/news">最新消息</a></li>
+                  <li><a href="/lovepage">我的最愛</a></li>
+              </ul>
+          </ul>
+      </li>
+  </ul>
+</nav>
+
+</div>
+<!--container-->
+<div id="container">
+<!--activity-->
+<div id="contain_details" class="v-spacing-30 h-spacing-10">
+    <div id="page_title" class="blue-title font-h1">
+      <p> {{ num.title  }}
+      </p>
+      <a id="home_page" class="font-white bg-gray-7-1 spacing-5" href="{{num.url}}" target="_blank" title="前往官網">
+              <span id="home_page_text" style="font-size: 15px;">前往官網
+                <i class="fa fa-angle-double-right"></i>
+                <i class="fa fa-angle-double-right"></i></span>
+            </a>
+    </div>
+    <div id="filter">
+      <ul class="filter_inner"></ul>
+    </div>
+    <div id="page_content" class="v-spacing-10">
+        <div id="events_info" class="h-spacing-20 font-h3 font-gray-2">
+            
+            <div id="events_photo" class="info_content-1">
+              <div class="photo" style="width: 200px; height: auto;">
+                {% if num.image %}
+                <p><img src="{{num.image.url}}" alt="" style="width: 200px; height: auto; width: auto;height: auto;max-width: 70%;max-height: 70%;"></p>
+                {% endif %}
+              </div>
+            </div>
+            <div id="events_time" class="font-h3 info_content v-spacing-10" style="color: rgb(28,30,33);font-family: Helvetica,Arial,sana-serif;">
+              <span class="label">展覽活動期間:</span>
+              <span class="content">{{ num.event_date  }}</span>
+            </div>
+            <div class="events_host" class="font-h3 info_content v-spacing-10" style="color: rgb(28,30,33);font-family: Helvetica,Arial,sana-serif;">
+              <span class="label">展覽地點:</span>
+              <span class="content">{{ num.event_address  }}</span>
+            </div>
+            
+        </div>
+        <div id="filter">
+           <ul class="filter_inner" style="padding-top: 40px;"></ul>
+        </div>
+        <div class="all">
+            <div id="article_content" class="editor-container h-spacing-20 v-spacing-10 font-h3 ">
+              <span style="color: rgb(28,30,33);font-family: Helvetica,Arial,sana-serif;font-size: 15px;">{{ num.desc  }}</span>
+            </div>
+            
+        </div>
+        <div id="filter">
+          <ul class="filter_inner"></ul>
+        </div>
+        <div id="page_content">
+          <div id="events_info" class="h-spacing-20 v-spacing-10 font-h3 font-gray-2">
+            <div class="events_seat" class="info_content" class="h-spacing-20 font-h3 font-gray-2">
+                <span class="label font-h3 info_content " style="padding:5px 0 ;color: rgb(28,30,33);font-family: Helvetica,Arial,sana-serif;">展覽攤位配置圖:</span>
+                <center>
+                <form method="POST" name="form1">
+                  {% csrf_token %}
+                  {% if "FF" in num.title %}
+                  <table>
+                    <tr class="top">
+                      <td style="text-align: right;" colspan="2"><input type="submit"  value="X" name="X" style="left: 190px; width:70%;height:45px;">
+                      </td>
+                      <td><input type="submit"  value="商業攤" name="商業攤一" style="width:55%;height:45px; margin-left: 35px;">
+                      </td>
+                    </tr>
+                    <tr >
+                      <td class="left-y"><input type="submit"  value="Y" name="Y" style="width: 55px;height: 620px"></td>
+                      <td class="mid-L">
+                        <p><input type="submit"  value="L" name="L" style="width:200px;height:40px;">
+                        <p><input type="submit"  value="M" name="M" style="width:200px;height:40px;">
+                        <p><input type="submit"  value="N" name="N" style="width:200px;height:40px;">
+                        <p><input type="submit"  value="O" name="O" style="width:200px;height:40px;">
+                        <p><input type="submit"  value="P" name="P" style="width:200px;height:40px;">
+                        <p><input type="submit"  value="Q" name="Q" style="width:200px;height:40px;">
+                        <p><input type="submit"  value="R" name="R" style="width:200px;height:40px;">
+                        <p><input type="submit"  value="S" name="S" style="width:200px;height:40px;">
+                        <p><input type="submit"  value="T" name="T" style="width:200px;height:40px;">
+                        <p><input type="submit"  value="U" name="U" style="width:200px;height:40px;">
+                        <p><input type="submit"  value="V" name="V" style="width:200px;height:40px;">
+                        <p><input type="submit"  value="W" name="W" style="width:200px;height:40px;">
+                      </td>
+                      <td class="mid-A">
+                        <p><input type="submit"  value="A" name="A" style="width:150px;height:40px;">
+                        <p><input type="submit"  value="B" name="B" style="width:150px;height:40px;">
+                        <p><input type="submit"  value="C" name="C" style="width:150px;height:40px;">
+                        <p><input type="submit"  value="D" name="D" style="width:150px;height:40px;">
+                        <p><input type="submit"  value="E" name="E" style="width:150px;height:40px;">
+                        <p><input type="submit"  value="F" name="F" style="width:150px;height:40px;">
+                        <p style=" margin-top:45px;"><input type="submit"  value="G" name="G" style="width:150px;height:40px;">
+                        <p><input type="submit"  value="H" name="H" style="width:150px;height:40px;">
+                        <p><input type="submit"  value="I" name="I" style="width:150px;height:40px;">
+                        <p><input type="submit"  value="J" name="J" style="width:150px;height:40px;">
+                        <p><input type="submit"  value="K" name="K" style="width:150px;height:40px;">
+                      </td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td class="bottom" colspan="2" style="text-align:center;"><input type="submit"  value="商業攤" name="商業攤二" style="width:415px;height:100px;"></td>
+                    </tr>
+
+                    </table>
+                    {% elif "CWT" in num.title %}
+                    <table >
+                      <p class="font-h1" style="font-weight: 600">3F
+                          <table >
+                              <tr class="top2">
+                                  <td><input type="button" value="特04" onclick="location.href='i4713'"></td>
+                                  <td class="top2-H" colspan="7"><input type="submit" value="H" name="H" style="width:925px;height:45px;"></td>
+                                  <td><input type="button" value="特05" onclick="location.href='i4714'"></td>
+                              </tr>
+                              <tr>
+                                  <td class="left-03">
+                                    <p><input type="button" value="特03" onclick="location.href='i4712'">
+                                    <p><input type="button" value="特02" onclick="location.href='i4711'">
+                                  </td>
+                                  <td class="mid2-A"><input type="submit"  value="A" name="A" style="width:45px;height:260px;"></td>
+                                  <td class="mid2-B"><input type="submit"  value="B" name="B" style="width:45px;height:260px;"></td>
+                                  <td class="mid2-C"><input type="submit"  value="C" name="C" style="width:45px;height:260px;"></td>
+                                  <td class="mid2-D"><input type="submit"  value="D" name="D" style="width:45px;height:260px;"></td>
+                                  <td class="mid2-E"><input type="submit"  value="E" name="E" style="width:45px;height:260px;"></td>
+                                  <td class="mid2-F"><input type="submit"  value="F" name="F" style="width:45px;height:260px;"></td>
+                                  <td class="mid2-G"><input type="submit"  value="G" name="G" style="width:45px;height:260px;"></td>
+                                  <td class="right-06">
+                                    <p><input type="button" value="特06" onclick="location.href='i4715'">
+                                    <p><input type="button" value="特07" onclick="location.href='i4716'">
+                                    <p><input type="button" value="特08" onclick="location.href='i4717'">
+                                  </td>
+                              </tr>
+
+                              <tr class="top2">
+                                  <td><input type="button" value="特01" onclick="location.href='i4710'"></td>
+                                  <td class="bottom2-I" colspan="7"><input type="submit"  value="I" name="I" style="width:925px;height:45px;"></td>
+                              </tr>
+
+                              <tr>
+                                  <td></td>
+                                  <td class="bottom2" colspan="7" style="text-align:center;"><input type="submit"  value="商業攤" name="商業攤" style="width:400px;height:140px;"></td>
+                                  <td></td>
+                              </tr>
+                          </table>
+                      </p>
+
+                      <div id="filter">
+                          <ul class="filter_inner"></ul>
+                      </div>
+
+                      <p class="font-h1" style="font-weight: 600 ;padding-top: 10px;">4F
+                          <table >
+                              <tr style="vertical-align:text-top;">
+                              <td class="left-19">
+                                  <p><input type="button" value="特19" onclick="location.href='i4728'">
+                                  <p><input type="button" value="特18" onclick="location.href='i4727'">
+                                  <p><input type="button" value="特17" onclick="location.href='i4726'">
+                                  <p><input type="button" value="特16" onclick="location.href='i4725'">
+                                  <p><input type="button" value="特15" onclick="location.href='i4724'">
+                                  <p><input type="button" value="特14" onclick="location.href='i4723'">
+                                  <p><input type="button" value="特13" onclick="location.href='i4722'">
+                              </td>
+                              
+
+                              <td class="right-20">
+                                  <p><input type="button" value="特20" onclick="location.href='i4729'">
+                                  <p><input type="button" value="特21" onclick="location.href='i4730'">
+                                  <p><input type="button" value="特22" onclick="location.href='i4731'">
+                                  <p><input type="button" value="特23" onclick="location.href='i4732'">
+                                  <p><input type="button" value="特24" onclick="location.href='i4733'">
+                                  <p><input type="button" value="特25" onclick="location.href='i4734'">
+                                  <p><input type="button" value="特26" onclick="location.href='i4735'">
+                                  
+                              </td>
+                              </tr>
+
+                              <tr style="vertical-align:text-top;">
+                              <td class="left-12">
+                                  <p style=" margin-top:45px;"><input type="button" value="特12" onclick="location.href='i4721'">
+                                  <p><input type="button" value="特11" onclick="location.href='i4720'">
+                                  <p><input type="button" value="特10" onclick="location.href='i4719'">
+                                  <p><input type="button" value="特09" onclick="location.href='i4718'">
+                              </td>
+                              <td class="right-27">
+                                  <p style=" margin-top:45px;"><input type="button" value="特27" onclick="location.href='i4736'">
+                                  <p><input type="button" value="特28" onclick="location.href='i4737'">
+                                  <p><input type="button" value="特29" onclick="location.href='i4738'">
+                                  <p><input type="button" value="特30" onclick="location.href='i4739'">
+                                  <p><input type="button" value="特31" onclick="location.href='i4740'">
+                                  <p><input type="button" value="特32" onclick="location.href='i4741'">
+                                  <p><input type="button" value="特33" onclick="location.href='i4742'">
+                              </td>
+                              </tr>
+                          </table>
+                      </p>
+                      <div id="filter">
+                          <ul class="filter_inner"></ul>
+                      </div>
+
+                      <p class="font-h1" style="font-weight: 600 ;padding-top: 10px;">1F
+                          <table >
+                            <tr>
+                              <td class="top3-Q" colspan="7"><input type="submit"  value="Q" name="Q" style="width:925px;height:45px;"></td>
+                            </tr>
+                            <tr>
+                              <td class="mid3-J"><input type="submit"  value="J" name="J" style="width:45px;height:260px;"></td>
+                              <td class="mid3-K"><input type="submit"  value="K" name="K" style="width:45px;height:260px;"></td>
+                              <td class="mid3-L"><input type="submit"  value="L" name="L" style="width:45px;height:260px;"></td>
+                              <td class="mid3-M"><input type="submit"  value="M" name="M" style="width:45px;height:260px;"></td>
+                              <td class="mid3-N"><input type="submit"  value="N" name="N" style="width:45px;height:260px;"></td>
+                              <td class="mid3-O"><input type="submit"  value="O" name="O" style="width:45px;height:260px;"></td>
+                              <td class="mid3-P"><input type="submit"  value="P" name="P" style="width:45px;height:260px;"></td>
+                            </tr>
+                            <tr>
+                              <td class="bottom3-R" colspan="7"><input type="submit"  value="R" name="R" style="width:925px;height:45px;"></td>
+                            </tr>
+                          </table>
+                      </p>
+                      <div id="filter">
+                          <ul class="filter_inner"></ul>
+                      </div>
+
+                      <p class="font-h1" style="font-weight: 600 ;padding-top: 10px;">B1
+                          <table >
+                            <tr>
+                              <td class="top4-V" colspan="3"><input type="submit"  value="V" name="V" style="width:210px;height:45px;"></td>
+                            </tr>
+                            <tr>
+                              <td class="mid4-S"><input type="submit"  value="S" name="S" style="width:45px;height:260px;"></td>
+                              <td class="mid4-T"><input type="submit"  value="T" name="T" style="width:45px;height:260px;"></td>
+                              <td class="mid4-U"><input type="submit"  value="U" name="U" style="width:45px;height:260px;"></td>
+                            </tr>
+                            <tr>
+                              <td class="bottom4-W" colspan="3"><input type="submit"  value="W" name="W" style="width:210px;height:45px;"></td>
+                            </tr>
+                          </table>            
+                      </p>           
+                  </table>          
+                  {% endif %}
+              </form>
+              </center>
+              <!--員笨綻放圖片
+              <section id="banner1"></section>
+              員笨綻放圖片-->
+            </div>
+          </div>
+      </div>
+    </div>
+</div>
+
+<div>
+        <a href="/map">回上頁</a>
+
+
+           
+      
+    </div>
+
+<!--footer2-->
+    <div id="footer2">
+      <div class="footer2-content">
+        <!--
+        <img src="upload/15222185171718.jpg" width="100" alt="QRCODE" class="qr-code">
+        -->
+        <ul class="footer2-nav">
+          <li class="font-white">相關連結</li>
+          <li><a href="https://www.tainex1.com.tw/zh-tw/">南港展覽館</a></li>
+          <li><a href="http://www.twtc.org.tw/index.aspx">世貿展覽館</a></li>
+          <li><a href="index">台大體育館</a></li>
+        </ul>
+      </div>
+    </div>
+    <!--footer end-->
+</div>
+
+</div>
+
+<!-- Scripts -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/jquery.dropotron.min.js' %}"></script>
+<script src="{% static 'js/browser.min.js' %}"></script>
+<script src="{% static 'js/breakpoints.min.js' %}"></script>
+<script src="{% static 'js/util.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>
+
+

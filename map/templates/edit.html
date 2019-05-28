@@ -1,0 +1,166 @@
+{% load static %}
+{% load staticfiles %}
+{% block title %}
+<meta charset="utf-8">
+<title>修改呦</title>
+{% endblock %}
+
+{% block content %}
+
+<!DOCTYPE HTML>
+<!--
+    Arcana by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+    <title>活動攤位整合平臺contact us</title>
+    <title></title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+</head>
+<body class="is-preload">
+    <div id="page-wrapper">
+
+        <!-- Header -->
+        <div id="header" >  
+        <!--FB..
+      <div id="top">
+        <ul class="community">
+          <li><a target="_blank" class="fb">facebook</a></li>
+          <li><a target="_blank" class="ig">IG</a></li>
+        </ul>
+      </div>-->
+
+      
+
+      <!-- Nav -->
+                <div id="nav">
+        <!-- Logo -->
+        <h1><a href="/index" id="logo">BOOTH GO!<em></em></a></h1>
+        {% if request.user.is_authenticated %}
+            <p id="Hello" >Hello, {{ user.username }}.
+        {% endif %}
+        <ul>
+          <li><a href="/index">Home</a></li>
+
+            <li><a href="/logout">Logout</a></li>
+
+          <li><a href="/about">About us</a></li>
+          <li class="current"><a href="/contact">Contact us</a></li>
+          <li><a>more</a>
+            <ul>
+              <li><a href="/map">展覽活動</a></li>
+              <li><a href="/news">最新消息</a></li>
+              <li><a href="/lovepage">我的最愛</a></li>
+            </ul>
+          </li>
+        </ul>
+        <!--search-->
+                <div class="box1">
+                    
+                    <form method="POST" name="form1" >   <!-- 建立form表單，設定傳送方式為GET，「action="/edit/{{unit.id}}/edit"」中第三個參數為edit，表示他是從<edit.html>按送出鈕傳送過來的-->
+
+                    {% csrf_token %}     <!-- #CSRF防護請加在此 -->
+                        <table border="1" cellpadding="1" cellspacing="4">
+                        
+                            <!-- #CSRF防護請加在此 -->
+                            
+                                <input type="text" id="search" name="search" placeholder="Type...">
+                     
+                                <input type="submit" name="button" id="button" value="Search">
+
+                        
+                    </table>
+
+                   
+                </form> 
+                    
+                </div>
+                <!--search end-->
+      </div>
+
+    <div id="container">
+        <!-- Main -->
+        <section class="wrapper style1">
+            <div class="container1">
+                <!-- Content -->
+                <article>
+                    <header>
+                        <h2>EDITING</h2>
+                        <p>Thank you for your editimg.</p>
+                    </header>
+                </article>
+            </div>
+        </section>
+
+        <!-- Footer1 -->
+        <div id="footer1">
+            <div class="row">
+                <section class="col-12">
+                     <form method="POST" name="form1" enctype="multipart/form-data">   <!-- 建立form表單，設定傳送方式為GET，「action="/edit/{{unit.id}}/edit"」中第三個參數為edit，表示他是從<edit.html>按送出鈕傳送過來的-->
+
+                        {% csrf_token %}     <!-- #CSRF防護請加在此 -->
+                        <div class="row gtr-50" style="text-align: left;">
+                            <label>社團編號:{{boothpk.number}}</label>
+                            <label>社團名稱:{{boothpk.group_name}}</label>
+                            <label>簡介:
+                                <input type="text" id="desc" name="desc" value="{{boothpk.desc}}">
+                            </label>
+                            <label>作品類型:
+                                <input type="text" id="worktype" name="workstype" value="{{boothpk.works_type}}">
+                            </label>
+                            <label>作品tag:
+                                <input type="text" id="worktag" name="workstag" value="{{boothpk.works_tag}}">
+                            </label>
+                            <label>相關網址:
+                                <input type="text" id="url" name="url" value="{{boothpk.rl}}">
+                            </label>
+                            <label>相關照片:
+                                <input type="file" name="image" accept="image/*">
+                            </label>
+                            <ul class="actions">
+                                <li><input type="submit" name="button" id="button" class="button alt"  value="Send Message"></li>
+                                <li><input type="reset" name="button2" id="button2" class="button alt" value="Reset  Message"></li>
+                                
+                            </ul>
+                        </div>
+                    </form>
+                </section>
+            </div>
+        </div>
+
+    <!--footer2-->
+        <div id="footer2">
+            <div class="footer2-content">
+                <!--
+                <img src="upload/15222185171718.jpg" width="100" alt="QRCODE" class="qr-code">
+                -->
+                <ul class="footer2-nav">
+                    <li class="font-white">相關連結</li>
+                    <li><a href="https://www.tainex1.com.tw/zh-tw/">南港展覽館</a></li>
+                    <li><a href="http://www.twtc.org.tw/index.aspx">世貿展覽館</a></li>
+                    <li><a href="index">台大體育館</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--footer end-->
+    
+</div>
+
+        <!-- Scripts -->
+        <script src="{% static 'js/jquery.min.js' %}"></script>
+        <script src="{% static 'js/jquery.dropotron.min.js' %}"></script>
+        <script src="{% static 'js/browser.min.js' %}"></script>
+        <script src="{% static 'js/breakpoints.min.js' %}"></script>
+        <script src="{% static 'js/util.js' %}"></script>
+        <script src="{% static 'js/main.js' %}"></script>
+
+    </body>
+    </html>
+
+    
+    
+{% endblock %}

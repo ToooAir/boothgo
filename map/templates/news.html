@@ -1,0 +1,328 @@
+{% load static %}
+{% load staticfiles %}
+<!DOCTYPE HTML>
+<!--
+    Arcana by HTML5 UP
+    html5up.net | @ajlkn
+    Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+  <title>展覽活動一覽</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+  <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+</head>
+<body>
+    <div id="page-wrapper" style="font-family: 微軟正黑體">
+        <!-- Header -->
+        <div id="header" >  
+            
+            <!--
+            FB..
+            <div id="top">
+                <ul class="community">
+                    <li><a target="_blank" class="fb">facebook</a></li>
+                    <li><a target="_blank" class="ig">IG</a></li>
+                </ul>
+            </div>-->
+
+            <!-- Nav -->
+            <div id="nav">
+                <!-- Logo -->
+                <h1>
+                    <a id="logo" class="font-white" href="/index" >BOOTH GO! </a>
+                </h1>
+                    {% if request.user.is_authenticated %}
+                        <p id="Hello" >Hello, {{ user.username }}.
+                    {% endif %}
+                <!--menu-->
+                <ul>
+                    <li><a href="/index">Home</a></li>
+                    {% if request.user.is_authenticated %}
+                        <li><a href="/logout">Logout</a></li>
+                    {% else %}
+                        <li><a href="/login?next=/search">Login</a></li>
+                    {% endif %}
+                    <li><a href="/about">About us</a></li>
+                    <li><a href="/contact">Contact us</a></li>
+                    <li  class="current"><a>more</a>
+                        <ul>
+                            <li><a href="/map">展覽活動</a></li>
+                            <li><a href="/news">最新消息</a></li>
+                            <li><a href="/lovepage">我的最愛</a></li>
+                        </ul>
+                    </li>
+                </ul>
+                <!--menu end-->
+                <!--search-->
+                <div class="box1">
+                    <form method="POST" name="form1" >  
+                     <!-- 建立form表單，設定傳送方式為GET，「action="/edit/{{unit.id}}/edit"」中第三個參數為edit，表示他是從<edit.html>按送出鈕傳送過來的-->
+
+                        {% csrf_token %}     <!-- #CSRF防護請加在此 -->
+                        <table border="1" cellpadding="1" cellspacing="4">
+                            <!-- #CSRF防護請加在此 -->
+                            <input type="text" id="search" name="search" placeholder="Type...">
+                            <input type="submit" name="button" id="button" value="Search">
+                        </table>
+                    </form> 
+                </div>
+                <!--search end-->
+            </div>
+            <!-- Nav end-->
+        </div>
+        <!-- Header end-->
+
+        <!--activity-->
+<div id="container">
+<div id="contain_details" class="v-spacing-30 h-spacing-40">
+    <h2 id="page_title" class="brown-title font-h1">最新消息</h2>
+    <div id="page_content" class="v-spacing-10">
+<div id="filter">
+                  <ul class="filter_inner"></ul>
+                </div>
+       <!-- list -->
+       <div id="events_list">
+           <div class="list_inner">
+               <div class="list_content">
+                <a href="/zh-tw/calendar/detail/361?type=&amp;month=4%2C6&amp;year=2019" class="list_link font-h3 hoverBg-gray-3">
+                    <div class="events_info">
+                        <div class="events_time font-h4 font-white bg-gray-7 spacing-5 align-center rounded-5">
+                            <p>04/06</p>
+                            <p class="times_sep">|</p>
+                            <p>04/06</p>
+                        </div>
+                        <div class="info_inner">
+                            <p class="title article">2019 Park Bo Gum Asia Tour in Taipei  〈Good Day : May your everyday be a good day〉 </p>
+                            <p class="location font-h4 font-gray-2">雲端展場</p>
+                        </div>
+                    </div>
+                    <img class="events_img" src="/upload/activity/5c63b710dd1fb.jpg" alt="">
+                </a>
+                <div id="filter">
+                  <ul class="filter_inner"></ul>
+                </div>
+            </div>
+            <div class="list_content">
+                <a href="/zh-tw/calendar/detail/367?type=&amp;month=4%2C6&amp;year=2019" class="list_link font-h3 hoverBg-gray-3">
+                    <div class="events_info">
+                        <div class="events_time font-h4 font-white bg-gray-7 spacing-5 align-center rounded-5">
+                            <p>04/20</p>
+                            <p class="times_sep">|</p>
+                            <p>04/20</p>
+                        </div>
+                        <div class="info_inner">
+                            <p class="title article">2019產業徵才博覽會 </p>
+                            <p class="location font-h4 font-gray-2">一樓展場</p>
+                        </div>
+                    </div>
+                    <img class="events_img" src="/upload/activity/5ca3183d4106f.jpg" alt="">
+                </a>
+                <div id="filter">
+                  <ul class="filter_inner"></ul>
+                </div>
+            </div>  
+            <div class="list_content">
+                <a href="/zh-tw/calendar/detail/321?type=&amp;month=4%2C6&amp;year=2019" class="list_link font-h3 hoverBg-gray-3">
+                    <div class="events_info">
+                        <div class="events_time font-h4 font-white bg-gray-7 spacing-5 align-center rounded-5">
+                            <p>04/24</p>
+                            <p class="times_sep">|</p>
+                            <p>04/27</p>
+                        </div>
+                        <div class="info_inner">
+                            <p class="title article">台北國際汽車零配件展覽會 </p>
+                            <p class="location font-h4 font-gray-2">一樓展場、雲端展場</p>
+                        </div>
+                    </div>
+                    <img class="events_img" src="/upload/activity/5b6d425125b38.gif" alt="">
+                </a>
+                <div id="filter">
+                  <ul class="filter_inner"></ul>
+                </div>
+            </div>
+            <div class="list_content">
+                <a href="/zh-tw/calendar/detail/289?type=&amp;month=4%2C6&amp;year=2019" class="list_link font-h3 hoverBg-gray-3">
+                    <div class="events_info">
+                        <div class="events_time font-h4 font-white bg-gray-7 spacing-5 align-center rounded-5">
+                            <p>05/08</p>
+                            <p class="times_sep">|</p>
+                            <p>05/10</p>
+                        </div>
+                        <div class="info_inner">
+                            <p class="title article">第二十二屆台北國際安全科技應用博覽會 </p>
+                            <p class="location font-h4 font-gray-2">雲端展場</p>
+                        </div>
+                    </div>
+                    <img class="events_img" src="/upload/activity/5b6b9ea02e95e.jpg" alt="">
+                </a>
+                <div id="filter">
+                  <ul class="filter_inner"></ul>
+                </div>
+            </div>
+            <div class="list_content">
+                <a href="/zh-tw/calendar/detail/356?type=&amp;month=4%2C6&amp;year=2019" class="list_link font-h3 hoverBg-gray-3">
+                    <div class="events_info">
+                        <div class="events_time font-h4 font-white bg-gray-7 spacing-5 align-center rounded-5">
+                            <p>05/08</p>
+                            <p class="times_sep">|</p>
+                            <p>05/10</p>
+                        </div>
+                        <div class="info_inner">
+                            <p class="title article">台灣國際照明科技展 </p>
+                            <p class="location font-h4 font-gray-2">一樓展場</p>
+                        </div>
+                    </div>
+                    <img class="events_img" src="/upload/activity/5be396e13da09.gif" alt="">
+                </a>
+                <div id="filter">
+                  <ul class="filter_inner"></ul>
+                </div>
+            </div>
+            <div class="list_content">
+                <a href="/zh-tw/calendar/detail/369?type=&amp;month=4%2C6&amp;year=2019" class="list_link font-h3 hoverBg-gray-3">
+                    <div class="events_info">
+                        <div class="events_time font-h4 font-white bg-gray-7 spacing-5 align-center rounded-5">
+                            <p>05/19</p>
+                            <p class="times_sep">|</p>
+                            <p>05/19</p>
+                        </div>
+                        <div class="info_inner">
+                            <p class="title article">2019《韓國娛樂音樂饗宴》 </p>
+                            <p class="location font-h4 font-gray-2">雲端展場</p>
+                        </div>
+                    </div>
+                    <img class="events_img" src="/upload/activity/5cbfc190eaaa4.jpg" alt="">
+                </a>
+                <div id="filter">
+                  <ul class="filter_inner"></ul>
+                </div>
+            </div>
+            <div class="list_content">
+                <a href="/zh-tw/calendar/detail/315?type=&amp;month=4%2C6&amp;year=2019" class="list_link font-h3 hoverBg-gray-3">
+                    <div class="events_info">
+                        <div class="events_time font-h4 font-white bg-gray-7 spacing-5 align-center rounded-5">
+                            <p>05/28</p>
+                            <p class="times_sep">|</p>
+                            <p>06/01</p>
+                        </div>
+                        <div class="info_inner">
+                            <p class="title article">台北國際電腦展 </p>
+                            <p class="location font-h4 font-gray-2">一樓展場、雲端展場</p>
+                        </div>
+                    </div>
+                    <img class="events_img" src="/upload/activity/5b6d431cee76b.jpg" alt="">
+                </a>
+                <div id="filter">
+                  <ul class="filter_inner"></ul>
+                </div>
+            </div>
+            <div class="list_content">
+                <a href="/zh-tw/calendar/detail/326?type=&amp;month=4%2C6&amp;year=2019" class="list_link font-h3 hoverBg-gray-3">
+                    <div class="events_info">
+                        <div class="events_time font-h4 font-white bg-gray-7 spacing-5 align-center rounded-5">
+                            <p>06/19</p>
+                            <p class="times_sep">|</p>
+                            <p>06/22</p>
+                        </div>
+                        <div class="info_inner">
+                            <p class="title article">台北國際食品展覽會 </p>
+                            <p class="location font-h4 font-gray-2">一樓展場、雲端展場</p>
+                        </div>
+                    </div>
+                    <img class="events_img" src="/upload/activity/5b70f078ae8d0.png" alt="">
+                </a>
+                <div id="filter">
+                  <ul class="filter_inner"></ul>
+                </div>
+            </div>
+            <div class="list_content">
+                <a href="/zh-tw/calendar/detail/317?type=&amp;month=4%2C6&amp;year=2019" class="list_link font-h3 hoverBg-gray-3">
+                    <div class="events_info">
+                        <div class="events_time font-h4 font-white bg-gray-7 spacing-5 align-center rounded-5">
+                            <p>06/19</p>
+                            <p class="times_sep">|</p>
+                            <p>06/22</p>
+                        </div>
+                        <div class="info_inner">
+                            <p class="title article">台北國際包裝工業展覽會  </p>
+                            <p class="location font-h4 font-gray-2">一樓展場</p>
+                        </div>
+                    </div>
+                    <img class="events_img" src="/upload/activity/5b70eff8b5d05.png" alt="">
+                </a>
+                <div id="filter">
+                  <ul class="filter_inner"></ul>
+                </div>
+            </div>
+            <div class="list_content">
+                <a href="/zh-tw/calendar/detail/320?type=&amp;month=4%2C6&amp;year=2019" class="list_link font-h3 hoverBg-gray-3">
+                    <div class="events_info">
+                        <div class="events_time font-h4 font-white bg-gray-7 spacing-5 align-center rounded-5">
+                            <p>06/19 - 06/22</p>
+                        </div>
+                        <div class="info_inner">
+                            <p class="title article">台北國際食品加工設備暨生技/製藥機械展 </p>
+                            <p class="location font-h4 font-gray-2">雲端展場</p>
+                        </div>
+                    </div>
+                    <img class="events_img" src="/upload/activity/5be39552c8376.gif" alt="">
+                </a>
+                <div id="filter">
+                  <ul class="filter_inner"></ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- ./list -->
+    
+    <div id="pagination">
+        <div id="prev_wrapper" class="pagination_content arrow_link"></div>
+
+        <div id="pages" class="pagination_content">
+            <a href="/zh-tw/calendar/index?type=&amp;year=2019&amp;month=4%2C6&amp;page=1" class="link pagination_content active" title="第01頁">
+            01        </a>
+        </div>
+
+        <div id="next_wrapper" class="pagination_content arrow_link"></div>
+        <div class="nav_mask p-absolute"></div>
+        <!--上頁按鈕-->
+            <p><a href="/index"> 回上一頁 </a></p>
+        <!--上頁按鈕 end-->
+    </div>
+</div>
+</div>
+
+       
+        <!--footer2-->
+        <div id="footer2">
+            <div class="footer2-content">
+                <ul class="footer2-nav">
+                    <li class="font-white">相關連結</li>
+                    <li><a href="https://www.tainex1.com.tw/zh-tw/">南港展覽館</a></li>
+                    <li><a href="http://www.twtc.org.tw/index.aspx">世貿展覽館</a></li>
+                    <li><a href="index">台大體育館</a></li>
+                </ul>
+            </div>
+        </div>
+        <!--footer end-->
+    </div> <!-- all end-->
+
+<!-- Scripts -->
+<script src="{% static 'js/jquery.min.js' %}"></script>
+<script src="{% static 'js/jquery.dropotron.min.js' %}"></script>
+<script src="{% static 'js/browser.min.js' %}"></script>
+<script src="{% static 'js/breakpoints.min.js' %}"></script>
+<script src="{% static 'js/util.js' %}"></script>
+<script src="{% static 'js/main.js' %}"></script>
+
+</body>
+</html>
+
+
+
+
+
+
+        

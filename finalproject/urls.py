@@ -19,6 +19,7 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.views.decorators.csrf import csrf_exempt
 from django.views.static import serve
+from django.views.generic.base import RedirectView
 
 from map import views
 from map.views import *
@@ -41,5 +42,6 @@ urlpatterns = [
     url(r'^lovepage/', lovepage, name='lovepage'),
     url(r'^contact/', comment, name='comment'),
     url(r'^about/', about, name='about'),
-    url(r'^news/', news, name='news')
+    url(r'^news/', news, name='news'),
+    url(r'^.*$', RedirectView.as_view(url='index/', permanent=False), name='index')
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

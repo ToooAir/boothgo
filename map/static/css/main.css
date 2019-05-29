@@ -3746,7 +3746,7 @@ body.is-touch .tiles article .content {
 	}
 }
 
-/*search...*/
+/*search box1...*/
 
 .box1 {
 	position: absolute;
@@ -3754,14 +3754,6 @@ body.is-touch .tiles article .content {
 	left: 90%;
 	width: 250px;
 	transform: translate(-50%, -50%);
-}
-
-
-@media only screen and (max-width: 1200px) {
-	.box1 {
-		top: 2.5%;
-		left: 91%;
-	}
 }
 
 .box1 input {
@@ -3796,6 +3788,57 @@ body.is-touch .tiles article .content {
 .box1 input[type="submit"]:hover {
 	background: #ff5722;
 }
+
+/*search box1 end...*/
+
+/*box2*/
+
+@media only screen and (min-width: 1200px) {
+	.box2 {
+		display: none;
+	}
+}
+
+@media only screen and (max-width: 480px) {
+	.box2 {
+		position: relative;
+		left: 35%;
+		width: 250px;
+		transform: translate(-50%, -50%);
+		padding-top: 50px;
+		margin-bottom: -60px;
+	}
+	.box2 input {
+		position: absolute;
+		display: inline-block;
+		font-size: 20px;
+		box-sizing: border-box;
+	}
+	.box2 input[type="text"] {
+		background: #fff;
+		width: 265px;
+		height: 29px;
+		outline: none;
+		padding: 0 9px;
+		border-radius: 25px 0 0 25px;
+	}
+	.box2 input[type="submit"] {
+		position: relative;
+		left: 265px;
+		border-radius: 0 25px 25px 0;
+		width: 100px;
+		height: 29px;
+		outline: none;
+		cursor: pointer;
+		background: #ffc107;
+		color: #fff;
+	}
+	.box2 input[type="submit"]:hover {
+		background: #ff5722;
+	}
+}
+
+/*search box2 end...*/
 
 /*FB...*/
 
@@ -5792,7 +5835,8 @@ body.is-touch .tiles article .content {
 }*/
 	#btn-booth {
 		/*padding: 6px;*/
-		min-width: 3em;
+		min-width: 1em;
+		min-height: 1em;
 		margin-top: 30px;
 		margin-bottom: 50px;
 		margin-left: 5px;

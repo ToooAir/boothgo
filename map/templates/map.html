@@ -79,7 +79,7 @@
                 {% endif %}
               </div>
             </div>
-            <div id="events_time" class="font-h3 info_content v-spacing-10" style="color: rgb(28,30,33);font-family: Helvetica,Arial,sana-serif;">
+            <div id="events_time" class="font-h3 info_content v-spacing-10" >
               <span class="label">展覽活動期間:</span>
               <span class="content">{{ num.event_date  }}</span>
             </div>
@@ -94,6 +94,7 @@
         </div>
         <div class="all">
             <div id="article_content" class="editor-container h-spacing-20 v-spacing-10 font-h3 ">
+              <p style="color: rgb(28,30,33);font-family: Helvetica,Arial,sana-serif;font-size: 20px;">展覽描述:</p>
               <span style="color: rgb(28,30,33);font-family: Helvetica,Arial,sana-serif;font-size: 15px;">{{ num.desc  }}</span>
             </div>
             
@@ -106,99 +107,103 @@
             <div class="events_seat" class="info_content" class="h-spacing-20 font-h3 font-gray-2">
                 <span class="label font-h3 info_content " style="padding:5px 0 ;color: rgb(28,30,33);font-family: Helvetica,Arial,sana-serif;">展覽攤位配置圖:</span>
                 <center>
-                <form method="POST" name="form1">
+                <form id="map-1" method="POST" name="form1">
                   {% csrf_token %}
                   {% if "FF" in num.title %}
-                  <table>
-                    <tr class="top">
-                      <td style="text-align: right;" colspan="2"><input type="submit"  value="X" name="X" style="left: 190px; width:70%;height:45px;">
+                  <div id="Contain">
+                  <table style="display: inline-block;  overflow-x:auto; overflow-y: hidden;">
+                    <tr>
+                      <td class="top-X" colspan="2"><input type="submit"  value="X" name="X">
                       </td>
-                      <td><input type="submit"  value="商業攤" name="商業攤一" style="width:55%;height:45px; margin-left: 35px;">
+                      <td class="top1"><input type="submit"  value="商業攤" name="商業攤一">
                       </td>
                     </tr>
                     <tr >
-                      <td class="left-y"><input type="submit"  value="Y" name="Y" style="width: 55px;height: 620px"></td>
+                      <td class="left-y"><input type="submit"  value="Y" name="Y"></td>
                       <td class="mid-L">
-                        <p><input type="submit"  value="L" name="L" style="width:200px;height:40px;">
-                        <p><input type="submit"  value="M" name="M" style="width:200px;height:40px;">
-                        <p><input type="submit"  value="N" name="N" style="width:200px;height:40px;">
-                        <p><input type="submit"  value="O" name="O" style="width:200px;height:40px;">
-                        <p><input type="submit"  value="P" name="P" style="width:200px;height:40px;">
-                        <p><input type="submit"  value="Q" name="Q" style="width:200px;height:40px;">
-                        <p><input type="submit"  value="R" name="R" style="width:200px;height:40px;">
-                        <p><input type="submit"  value="S" name="S" style="width:200px;height:40px;">
-                        <p><input type="submit"  value="T" name="T" style="width:200px;height:40px;">
-                        <p><input type="submit"  value="U" name="U" style="width:200px;height:40px;">
-                        <p><input type="submit"  value="V" name="V" style="width:200px;height:40px;">
-                        <p><input type="submit"  value="W" name="W" style="width:200px;height:40px;">
+                        <p><input type="submit"  value="L" name="L" >
+                        <p><input type="submit"  value="M" name="M">
+                        <p><input type="submit"  value="N" name="N">
+                        <p><input type="submit"  value="O" name="O">
+                        <p><input type="submit"  value="P" name="P">
+                        <p><input type="submit"  value="Q" name="Q">
+                        <p><input type="submit"  value="R" name="R">
+                        <p><input type="submit"  value="S" name="S">
+                        <p><input type="submit"  value="T" name="T">
+                        <p><input type="submit"  value="U" name="U">
+                        <p><input type="submit"  value="V" name="V">
+                        <p><input type="submit"  value="W" name="W">
                       </td>
                       <td class="mid-A">
-                        <p><input type="submit"  value="A" name="A" style="width:150px;height:40px;">
-                        <p><input type="submit"  value="B" name="B" style="width:150px;height:40px;">
-                        <p><input type="submit"  value="C" name="C" style="width:150px;height:40px;">
-                        <p><input type="submit"  value="D" name="D" style="width:150px;height:40px;">
-                        <p><input type="submit"  value="E" name="E" style="width:150px;height:40px;">
-                        <p><input type="submit"  value="F" name="F" style="width:150px;height:40px;">
-                        <p style=" margin-top:45px;"><input type="submit"  value="G" name="G" style="width:150px;height:40px;">
-                        <p><input type="submit"  value="H" name="H" style="width:150px;height:40px;">
-                        <p><input type="submit"  value="I" name="I" style="width:150px;height:40px;">
-                        <p><input type="submit"  value="J" name="J" style="width:150px;height:40px;">
-                        <p><input type="submit"  value="K" name="K" style="width:150px;height:40px;">
+                        <p><input type="submit"  value="A" name="A" >
+                        <p><input type="submit"  value="B" name="B" >
+                        <p><input type="submit"  value="C" name="C" >
+                        <p><input type="submit"  value="D" name="D" >
+                        <p><input type="submit"  value="E" name="E" >
+                        <p><input type="submit"  value="F" name="F" >
+                        <p style=" margin-top:45px;"><input type="submit"  value="G" name="G">
+                        <p><input type="submit"  value="H" name="H" >
+                        <p><input type="submit"  value="I" name="I" >
+                        <p><input type="submit"  value="J" name="J" >
+                        <p><input type="submit"  value="K" name="K" >
                       </td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td class="bottom" colspan="2" style="text-align:center;"><input type="submit"  value="商業攤" name="商業攤二" style="width:415px;height:100px;"></td>
+                        <td class="bottom" colspan="2" style="text-align:center;"><input type="submit"  value="商業攤" name="商業攤二" ></td>
                     </tr>
 
                     </table>
+                  </div>
+
                     {% elif "CWT" in num.title %}
-                    <table >
-                      <p class="font-h1" style="font-weight: 600">3F
-                          <table >
+                    <table>
+                      <p class="font-h1" style="font-weight: 600 ;padding-top: 10px;">3F
+                          <table  style="display: inline-block;  overflow-x:auto; overflow-y: hidden;">
                               <tr class="top2">
-                                  <td><input type="button" value="特04" onclick="location.href='i4713'"></td>
-                                  <td class="top2-H" colspan="7"><input type="submit" value="H" name="H" style="width:925px;height:45px;"></td>
-                                  <td><input type="button" value="特05" onclick="location.href='i4714'"></td>
+                                  <td class="top2-04"><input type="button" value="特04" onclick="location.href='i4713'"></td>
+                                  <td class="top2-H" colspan="7"><input type="submit" value="H" name="H"></td>
+                                  <td class="top2-05"><input type="button" value="特05" onclick="location.href='i4714'"></td>
                               </tr>
                               <tr>
-                                  <td class="left-03">
-                                    <p><input type="button" value="特03" onclick="location.href='i4712'">
-                                    <p><input type="button" value="特02" onclick="location.href='i4711'">
+                                  <td class="left2">
+                                    <p class="left2-03"><input type="button" value="特03" onclick="location.href='i4712'">
+                                    <p class="left2-02"><input type="button" value="特02" onclick="location.href='i4711'">
                                   </td>
-                                  <td class="mid2-A"><input type="submit"  value="A" name="A" style="width:45px;height:260px;"></td>
-                                  <td class="mid2-B"><input type="submit"  value="B" name="B" style="width:45px;height:260px;"></td>
-                                  <td class="mid2-C"><input type="submit"  value="C" name="C" style="width:45px;height:260px;"></td>
-                                  <td class="mid2-D"><input type="submit"  value="D" name="D" style="width:45px;height:260px;"></td>
-                                  <td class="mid2-E"><input type="submit"  value="E" name="E" style="width:45px;height:260px;"></td>
-                                  <td class="mid2-F"><input type="submit"  value="F" name="F" style="width:45px;height:260px;"></td>
-                                  <td class="mid2-G"><input type="submit"  value="G" name="G" style="width:45px;height:260px;"></td>
-                                  <td class="right-06">
-                                    <p><input type="button" value="特06" onclick="location.href='i4715'">
-                                    <p><input type="button" value="特07" onclick="location.href='i4716'">
-                                    <p><input type="button" value="特08" onclick="location.href='i4717'">
+                                  <td class="mid2-A"><input type="submit"  value="A" name="A"></td>
+                                  <td class="mid2-B"><input type="submit"  value="B" name="B"></td>
+                                  <td class="mid2-C"><input type="submit"  value="C" name="C"></td>
+                                  <td class="mid2-D"><input type="submit"  value="D" name="D"></td>
+                                  <td class="mid2-E"><input type="submit"  value="E" name="E"></td>
+                                  <td class="mid2-F"><input type="submit"  value="F" name="F" ></td>
+                                  <td class="mid2-G"><input type="submit"  value="G" name="G" ></td>
+                                  <td class="right2">
+                                    <p class="right2-06"><input type="button" value="特06" onclick="location.href='i4715'">
+                                    <p class="right2-07"><input type="button" value="特07" onclick="location.href='i4716'">
+                                    <p class="right2-08"><input type="button" value="特08" onclick="location.href='i4717'">
                                   </td>
                               </tr>
 
                               <tr class="top2">
-                                  <td><input type="button" value="特01" onclick="location.href='i4710'"></td>
-                                  <td class="bottom2-I" colspan="7"><input type="submit"  value="I" name="I" style="width:925px;height:45px;"></td>
+                                  <td class="bottom2-01"><input type="button" value="特01" onclick="location.href='i4710'"></td>
+                                  <td class="bottom2-I" colspan="7"><input type="submit"  value="I" name="I" ></td>
                               </tr>
 
                               <tr>
                                   <td></td>
-                                  <td class="bottom2" colspan="7" style="text-align:center;"><input type="submit"  value="商業攤" name="商業攤" style="width:400px;height:140px;"></td>
+                                  <td class="bottom2" colspan="7"><input type="submit"  value="商業攤" name="商業攤"></td>
                                   <td></td>
                               </tr>
-                          </table>
-                      </p>
+                            </table>
+                          </p>
+                    </table>
 
                       <div id="filter">
                           <ul class="filter_inner"></ul>
                       </div>
 
                       <p class="font-h1" style="font-weight: 600 ;padding-top: 10px;">4F
-                          <table >
+                          <table  style="display: inline-block;  overflow-x:auto; overflow-y: hidden;">
                               <tr style="vertical-align:text-top;">
                               <td class="left-19">
                                   <p><input type="button" value="特19" onclick="location.href='i4728'">
@@ -242,47 +247,49 @@
                               </tr>
                           </table>
                       </p>
+
                       <div id="filter">
                           <ul class="filter_inner"></ul>
                       </div>
 
                       <p class="font-h1" style="font-weight: 600 ;padding-top: 10px;">1F
-                          <table >
+                          <table  style="display: inline-block;  overflow-x:auto; overflow-y: hidden;">
                             <tr>
-                              <td class="top3-Q" colspan="7"><input type="submit"  value="Q" name="Q" style="width:925px;height:45px;"></td>
+                              <td class="top3-Q" colspan="7"><input type="submit"  value="Q" name="Q"></td>
                             </tr>
                             <tr>
-                              <td class="mid3-J"><input type="submit"  value="J" name="J" style="width:45px;height:260px;"></td>
-                              <td class="mid3-K"><input type="submit"  value="K" name="K" style="width:45px;height:260px;"></td>
-                              <td class="mid3-L"><input type="submit"  value="L" name="L" style="width:45px;height:260px;"></td>
-                              <td class="mid3-M"><input type="submit"  value="M" name="M" style="width:45px;height:260px;"></td>
-                              <td class="mid3-N"><input type="submit"  value="N" name="N" style="width:45px;height:260px;"></td>
-                              <td class="mid3-O"><input type="submit"  value="O" name="O" style="width:45px;height:260px;"></td>
-                              <td class="mid3-P"><input type="submit"  value="P" name="P" style="width:45px;height:260px;"></td>
+                              <td class="mid3-J"><input type="submit"  value="J" name="J"></td>
+                              <td class="mid3-K"><input type="submit"  value="K" name="K"></td>
+                              <td class="mid3-L"><input type="submit"  value="L" name="L" ></td>
+                              <td class="mid3-M"><input type="submit"  value="M" name="M" ></td>
+                              <td class="mid3-N"><input type="submit"  value="N" name="N"></td>
+                              <td class="mid3-O"><input type="submit"  value="O" name="O" ></td>
+                              <td class="mid3-P"><input type="submit"  value="P" name="P"></td>
                             </tr>
                             <tr>
-                              <td class="bottom3-R" colspan="7"><input type="submit"  value="R" name="R" style="width:925px;height:45px;"></td>
+                              <td class="bottom3-R" colspan="7"><input type="submit"  value="R" name="R"></td>
                             </tr>
                           </table>
                       </p>
+
                       <div id="filter">
                           <ul class="filter_inner"></ul>
                       </div>
 
                       <p class="font-h1" style="font-weight: 600 ;padding-top: 10px;">B1
-                          <table >
+                          <table  style="display: inline-block;  overflow-x:auto; overflow-y: hidden;">
                             <tr>
-                              <td class="top4-V" colspan="3"><input type="submit"  value="V" name="V" style="width:210px;height:45px;"></td>
+                              <td class="top4-V" colspan="3"><input type="submit"  value="V" name="V"></td>
                             </tr>
                             <tr>
-                              <td class="mid4-S"><input type="submit"  value="S" name="S" style="width:45px;height:260px;"></td>
-                              <td class="mid4-T"><input type="submit"  value="T" name="T" style="width:45px;height:260px;"></td>
-                              <td class="mid4-U"><input type="submit"  value="U" name="U" style="width:45px;height:260px;"></td>
+                              <td class="mid4-S"><input type="submit"  value="S" name="S"></td>
+                              <td class="mid4-T"><input type="submit"  value="T" name="T"></td>
+                              <td class="mid4-U"><input type="submit"  value="U" name="U"></td>
                             </tr>
                             <tr>
-                              <td class="bottom4-W" colspan="3"><input type="submit"  value="W" name="W" style="width:210px;height:45px;"></td>
+                              <td class="bottom4-W" colspan="3"><input type="submit"  value="W" name="W"></td>
                             </tr>
-                          </table>            
+                          </table>           
                       </p>           
                   </table>          
                   {% endif %}

@@ -26,37 +26,37 @@
 
         <!-- Header -->
         <div id="header" >  
-        <!--FB..
-      <div id="top">
-        <ul class="community">
-          <li><a target="_blank" class="fb">facebook</a></li>
-          <li><a target="_blank" class="ig">IG</a></li>
-        </ul>
-      </div>-->
+            <!--FB..
+          <div id="top">
+            <ul class="community">
+              <li><a target="_blank" class="fb">facebook</a></li>
+              <li><a target="_blank" class="ig">IG</a></li>
+            </ul>
+          </div>-->
 
       
 
       <!-- Nav -->
-                <div id="nav">
-        <!-- Logo -->
-        <h1><a href="/index" id="logo">BOOTH GO!<em></em></a></h1>
-        {% if request.user.is_authenticated %}
-            <p id="Hello" >Hello, {{ user.username }}.
-        {% endif %}
+    <div id="nav">
+            <!-- Logo -->
+            <h1><a href="/index" id="logo">BOOTH GO!<em></em></a></h1>
+            {% if request.user.is_authenticated %}
+                <p id="Hello" >Hello, {{ user.username }}.
+            {% endif %}
         <ul>
-          <li><a href="/index">Home</a></li>
+              <li><a href="/index">Home</a></li>
 
-            <li><a href="/logout">Logout</a></li>
+                <li><a href="/logout">Logout</a></li>
 
-          <li><a href="/about">About us</a></li>
-          <li class="current"><a href="/contact">Contact us</a></li>
-          <li><a>more</a>
-            <ul>
-              <li><a href="/map">展覽活動</a></li>
-              <li><a href="/news">最新消息</a></li>
-              <li><a href="/lovepage">我的最愛</a></li>
-            </ul>
-          </li>
+              <li><a href="/about">About us</a></li>
+              <li class="current"><a href="/contact">Contact us</a></li>
+              <li><a>more</a>
+                <ul>
+                  <li><a href="/map">展覽活動</a></li>
+                  <li><a href="/news">最新消息</a></li>
+                  <li><a href="/lovepage">我的最愛</a></li>
+                </ul>
+              </li>
         </ul>
         <!--search-->
                 <div class="box1">
@@ -78,11 +78,12 @@
                    
                 </form> 
                     
-                </div>
-                <!--search end-->
-      </div>
+        </div>
+        <!--search end-->
+    </div>
+    </div>
 
-    <div id="container">
+    <div id="container-edit">
         <!-- Main -->
         <section class="wrapper style1">
             <div class="container1">
@@ -100,7 +101,7 @@
         <div id="footer1">
             <div class="row">
                 <section class="col-12">
-                     <form method="POST" name="form1" enctype="multipart/form-data">   <!-- 建立form表單，設定傳送方式為GET，「action="/edit/{{unit.id}}/edit"」中第三個參數為edit，表示他是從<edit.html>按送出鈕傳送過來的-->
+                     <form id="editform" method="POST" name="form1" enctype="multipart/form-data">   <!-- 建立form表單，設定傳送方式為GET，「action="/edit/{{unit.id}}/edit"」中第三個參數為edit，表示他是從<edit.html>按送出鈕傳送過來的-->
 
                         {% csrf_token %}     <!-- #CSRF防護請加在此 -->
                         <div class="row gtr-50" style="text-align: left;">

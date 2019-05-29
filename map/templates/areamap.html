@@ -12,6 +12,8 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
   <link rel="stylesheet" href="{% static 'css/main.css' %}" />
+  
+
 </head>
 <body class="is-preload">
   <div id="page-wrapper" style="font-family: 微軟正黑體; color: rgb(28,30,33) ">
@@ -69,6 +71,7 @@
   </nav>
 </div>
 <!--activity-->
+<div id="container-area">
 <div id="contain_details" class="v-spacing-30 h-spacing-10">
       
         {% if "FF" in num.title %}    
@@ -83,7 +86,7 @@
           </div> 
             <tr>
               {% for n in boothbu1 %}
-                    <td ><input type="button" value="{{ n.group_name }}" onclick="location.href='i{{ n.id }}'"></td>
+                    <td ><input type="button" id="btn-booth" value="{{ n.group_name }}" onclick="location.href='i{{ n.id }}'"></td>
                 {% endfor %}
             </tr>
             
@@ -195,7 +198,9 @@
           <div id="filter">
               <ul class="filter_inner"></ul>
           </div>
-      <div class="button v-spacing-10">
+      <div class="button v-spacing-10" style="width: 90%">
+        <table style="display: inline-block;  overflow-x:auto; overflow-y: hidden;">
+          <tbody>
             <tr>
               {% for n in bootha reversed %}
                   {% if forloop.counter >= 23 %}
@@ -203,8 +208,11 @@
                       <div class="button-hover">
                         <a>A01-無限之館</a>
                       </div>
+                          <div class="button-hover">
+                        <a>A01-無限之館</a>
+                      </div>
 
-                        </td>
+                    </td>
                     
                    {% endif %}
                 {% endfor %}
@@ -216,10 +224,16 @@
                       <div class="button-hover">
                         <a>A01-無限之館</a>
                       </div>
+                          <div class="button-hover">
+                        <a>A01-無限之館</a>
+                      </div>
                       
                    {% endif %}
                 {% endfor %}
-            </tr>   
+            </tr>  
+          </tbody>
+        </table>
+      </div> 
         {% endif %}
 
         {% if boothb %}
@@ -281,6 +295,8 @@
           <div id="filter">
               <ul class="filter_inner"></ul>
           </div>
+      <table style="display: inline-block;  overflow-x:auto; overflow-y: hidden;">
+          <tbody>
         <tr>
           {% for n in boothd reversed %}
               {% if forloop.counter >= 23 %}
@@ -294,10 +310,14 @@
               {% if forloop.counter >= 23 %}
                 <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
                   
-               {% endif %}
-            {% endfor %}
-        </tr>
-        {% endif %} 
+                {% endif %}
+                {% endfor %}
+            </tr>  
+          </tbody>
+        </table>
+      </div> 
+        {% endif %}
+
         {% if boothe %}
         <div id="page_title" class="blue-title font-h1">
             <p>D區</p>
@@ -375,12 +395,18 @@
         {% endif %}
         {% if boothh %}
         <div id="page_title" class="blue-title font-h1">
+        
             <p>H區</p>
           </div>
 
           <div id="filter">
               <ul class="filter_inner"></ul>
-          </div> 
+          </div>
+
+          <div class="button v-spacing-10" style="width: 90%">
+        <table style="display: inline-block;  overflow-x:auto; overflow-y: hidden;;">
+          <tbody>
+
         <tr>
           {% for n in boothh reversed %}
               {% if forloop.counter >= 23 %}
@@ -395,9 +421,12 @@
                 <td><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
                   
                {% endif %}
-            {% endfor %}
-        </tr>
-        {% endif %} 
+                {% endfor %}
+            </tr>  
+          </tbody>
+        </table>
+      </div> 
+        {% endif %}
         {% if boothi %}
         <div id="page_title" class="blue-title font-h1">
             <p>I區</p>
@@ -801,7 +830,7 @@
         <tr>
           {% for n in boothy %}
               
-                <tr><p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></a></tr>
+                <tr><p><input type="button" id="btn-booth-Y" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></a></tr>
 
             {% endfor %}
         </tr>
@@ -1005,7 +1034,7 @@
         <td>
           {% for n in boothg %}
               {% if forloop.counter <= 40 %}
-                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+                <p><input type="button" id="btn-booth-Y" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
                {% endif %}
             {% endfor %}
         </td>
@@ -1054,7 +1083,7 @@
         <td>
           {% for n in boothj %}
               {% if forloop.counter <= 40 %}
-                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+                <p><input type="button" id="btn-booth-Y" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
                {% endif %}
             {% endfor %}
         </td>
@@ -1070,14 +1099,14 @@
         <td>
           {% for n in boothk %}
               {% if forloop.counter <= 40 %}
-                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+                <p><input type="button" id="btn-booth-Y" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
                {% endif %}
             {% endfor %}
         </td>
         <td>    
             {% for n in boothk %}
               {% if forloop.counter > 40 %}
-                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+                <p><input type="button" id="btn-booth-Y" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
                {% endif %}
             {% endfor %}
         </td>
@@ -1093,14 +1122,14 @@
         <td>
           {% for n in boothl %}
               {% if forloop.counter <= 40 %}
-                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+                <p><input type="button" id="btn-booth-Y" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
                {% endif %}
             {% endfor %}
         </td>
         <td>    
             {% for n in boothl %}
               {% if forloop.counter > 40 %}
-                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+                <p><input type="button" id="btn-booth-Y" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
                {% endif %}
             {% endfor %}
         </td>
@@ -1116,14 +1145,14 @@
         <td>
           {% for n in boothm %}
               {% if forloop.counter <= 40 %}
-                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+                <p><input type="button" id="btn-booth-Y" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
                {% endif %}
             {% endfor %}
         </td>
         <td>    
             {% for n in boothm %}
               {% if forloop.counter > 40 %}
-                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+                <p><input type="button" id="btn-booth-Y" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
                {% endif %}
             {% endfor %}
         </td>
@@ -1139,14 +1168,14 @@
         <td>
           {% for n in boothn  %}
               {% if forloop.counter <= 40 %}
-                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+                <p><input type="button" id="btn-booth-Y" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
                {% endif %}
             {% endfor %}
         </td>
         <td>    
             {% for n in boothn %}
               {% if forloop.counter > 40 %}
-                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+                <p><input type="button" id="btn-booth-Y" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
                {% endif %}
             {% endfor %}
         </td>
@@ -1162,14 +1191,14 @@
         <td>
           {% for n in bootho  %}
               {% if forloop.counter <= 40 %}
-                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+                <p><input type="button" id="btn-booth-Y" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
                {% endif %}
             {% endfor %}
         </td>
         <td>    
             {% for n in bootho %}
               {% if forloop.counter > 40 %}
-                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+                <p><input type="button" id="btn-booth-Y" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
                {% endif %}
             {% endfor %}
         </td>
@@ -1185,7 +1214,7 @@
         <tr>
           {% for n in boothp%}
               
-                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                <p><input type="button" id="btn-booth-Y" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
 
             {% endfor %}
         </tr>
@@ -1201,7 +1230,7 @@
         <tr>
           {% for n in boothq %}
 
-                <td><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                <td><input type="button" id="btn-booth-Y" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
                   
 
             {% endfor %}
@@ -1237,7 +1266,7 @@
         <tr>
           {% for n in booths %}
 
-                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+                <p><input type="button" id="btn-booth-Y" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
                
             {% endfor %}
         </tr>
@@ -1254,14 +1283,14 @@
         <td>
           {% for n in bootht %}
               {% if forloop.counter <= 38 %}
-                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+                <p><input type="button" id="btn-booth-Y" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
                {% endif %}
             {% endfor %}
         </td>
         <td>    
             {% for n in bootht %}
               {% if forloop.counter > 38 %}
-                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
+                <p><input type="button" id="btn-booth-Y" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'">
                   
                {% endif %}
             {% endfor %}
@@ -1278,14 +1307,14 @@
         <td>
           {% for n in boothu  %}
               {% if forloop.counter <= 38 %}
-                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+                <p><input type="button" id="btn-booth-Y" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
                {% endif %}
             {% endfor %}
         </td>
         <td>    
             {% for n in boothu %}
               {% if forloop.counter > 38 %}
-                <p><input type="button" id="btn-booth" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
+                <p><input type="button" id="btn-booth-Y" value="{{ n.number }}" onclick="location.href='i{{ n.id }}'"></p>
                {% endif %}
             {% endfor %}
         </td>
@@ -1328,6 +1357,7 @@
         {% endif %}
 
       </div>
+    </div>
       <div id="filter">
           <ul class="filter_inner" style="padding-top: 40px;"></ul>
       </div>

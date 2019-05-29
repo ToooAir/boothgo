@@ -43,5 +43,5 @@ urlpatterns = [
     url(r'^contact/', comment, name='comment'),
     url(r'^about/', about, name='about'),
     url(r'^news/', news, name='news'),
-    url(r'^.*$', RedirectView.as_view(url='index/', permanent=False), name='index')
+    url(r'^$', RedirectView.as_view(url='/index/'))
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

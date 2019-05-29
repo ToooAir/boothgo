@@ -57,26 +57,7 @@
           </li>
         </ul>
         <!--search-->
-                <div class="box1">
-                    
-                    <form method="POST" name="form1" >   <!-- 建立form表單，設定傳送方式為GET，「action="/edit/{{unit.id}}/edit"」中第三個參數為edit，表示他是從<edit.html>按送出鈕傳送過來的-->
-
-                    {% csrf_token %}     <!-- #CSRF防護請加在此 -->
-                        <table border="1" cellpadding="1" cellspacing="4">
-                        
-                            <!-- #CSRF防護請加在此 -->
-                            
-                                <input type="text" id="search" name="search" placeholder="Type...">
-                     
-                                <input type="submit" name="button" id="button" value="Search">
-
-                        
-                    </table>
-
-                   
-                </form> 
-                    
-                </div>
+                
                 <!--search end-->
       </div>
     </div>
